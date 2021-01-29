@@ -56,6 +56,7 @@ namespace SchoolManagement
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-        //Shalini Rani12
+       
     }
 }
+//ShaliniRani
