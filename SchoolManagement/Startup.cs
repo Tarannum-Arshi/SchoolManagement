@@ -56,8 +56,16 @@ namespace SchoolManagement
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+        //Shalini Rani
     }
 }
 
+//akash deep
+
+
+
 
 //vaibhav 2nd change
+//vaibhav
+
+
