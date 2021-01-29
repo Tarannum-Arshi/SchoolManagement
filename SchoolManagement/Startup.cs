@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using SchoolManagement.DataAccess.Data;
 namespace SchoolManagement
 {
+    //Hii
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -61,4 +62,3 @@ namespace SchoolManagement
 }
 //Hello
 //HelloEveryone
-//Hello
