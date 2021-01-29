@@ -56,21 +56,10 @@ namespace SchoolManagement
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-        //Shalini Rani12
     }
 }
 
-//akash deep goygfuyuf
-//987tyt078rt
 
-
-//akash deep
-
-
-
-
-//vaibhav 2nd change
-//vaibhav
 
 
 
