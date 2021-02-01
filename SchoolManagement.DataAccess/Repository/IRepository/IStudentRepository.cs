@@ -7,8 +7,8 @@ using SchoolManagement.Models.ViewModels;
 
 namespace SchoolManagement.DataAccess.Repository.IRepository
 {
-    public interface IUserRepository : IRepository<UserModel>
+    public interface IStudentRepository : IRepository<StudentModel>
     {
-
+        
     }
 }

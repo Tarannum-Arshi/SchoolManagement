@@ -10,23 +10,16 @@ using System.Text;
 
 namespace SchoolManagement.DataAccess.Repository
 {
-    public class UserRepository : Repository<UserModel> , IUserRepository
+    public class StudentRepository : Repository<StudentModel> , IStudentRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public UserRepository(ApplicationDbContext db) : base(db)
+        public StudentRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-        }
-        public void Update(UserModel usermodel)
-        {
-            var objFromDb = _db.UserModel.FirstOrDefault(s => s.UserId == usermodel.UserId);
-            if (objFromDb != null)
-            {
-                objFromDb.FirstName = usermodel.FirstName;
-                _db.SaveChanges();
-            }
+
         }
 
+        
     }
 }
