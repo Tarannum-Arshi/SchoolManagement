@@ -12,6 +12,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
         public IActionResult Index()
         {
             return View();
