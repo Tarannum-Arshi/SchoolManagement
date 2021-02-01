@@ -11,24 +11,24 @@ namespace SchoolManagement.DataAccess.Data.Repository.IRepository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            //UserRepository = new UserRepository(_db);
+            UserModel = new UserRepository(_db);
             
             //SPCall = new SPCall(_db);
         }
 
-        //public IUserRepository UserRepository { get; private set; }
+        public IUserRepository UserModel { get; private set; }
        
         //public ISPCall SPCall { get; private set; }
 
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _db.Dispose();
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _db.SaveChanges();
         }
     }
 }
