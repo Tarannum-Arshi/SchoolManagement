@@ -18,6 +18,7 @@ namespace SchoolManagement.DataAccess.Repository
         {
             _db = db;
         }
+
         public void Update(UserModel usermodel)
         {
             var objFromDb = _db.UserModel.FirstOrDefault(s => s.UserId == usermodel.UserId);

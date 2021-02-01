@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
