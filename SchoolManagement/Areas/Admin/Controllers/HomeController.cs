@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.DataAccess.Data.Repository.IRepository;
 using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
 using System;
@@ -19,17 +18,25 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(UserModel usermodel)
+        public IActionResult Register(string firstName, string lastName, string gender, DateTime dob, string email, string password)
         {
+            UserModel usermodel = new UserModel();
+            usermodel.FirstName = firstName;
+            usermodel.LastName = lastName;
+            usermodel.Gender = gender;
+            usermodel.DOB = dob;
+            usermodel.Email = email;
+            usermodel.Password = password;
             usermodel.Role = "u";
 
-
-            _unitOfWork.UserModel.Add(usermodel);
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.UserModel.Add(usermodel);
 
                 _unitOfWork.Save();
-                return RedirectToAction("Register", "Home", new { area="Admin"});
-            
-           
+                return RedirectToAction(nameof(Index));
+            }
+            return View(usermodel);
         }
         public IActionResult Register()
         {

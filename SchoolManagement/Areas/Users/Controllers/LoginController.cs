@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Models.ViewModels;
-using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using SchoolManagement.DataAccess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using SchoolManagement.DataAccess.Repository.IRepository;
 
 namespace SchoolManagement.Areas.Users.Controllers
 {
