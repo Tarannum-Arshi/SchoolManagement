@@ -9,6 +9,6 @@ namespace SchoolManagement.DataAccess.Data.Repository.IRepository
 {
     public interface IUserRepository : IRepository<UserModel>
     {
-        
+        void Update(UserModel UserModel);
     }
 }

@@ -19,6 +19,9 @@ namespace SchoolManagement.DataAccess.Data.Repository
 
         }
 
-        
+        public void Update(UserModel UserModel)
+        {
+
+        }
     }
 }
