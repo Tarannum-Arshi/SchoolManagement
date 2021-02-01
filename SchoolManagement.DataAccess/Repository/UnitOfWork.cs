@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SchoolManagement.DataAccess.Data;
+using SchoolManagement.DataAccess.Repository.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
