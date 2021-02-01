@@ -8,8 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchoolManagement.DataAccess.Data;
-using SchoolManagement.DataAccess.Data.Repository.IRepository;
-
+using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.DataAccess.Repository;
 namespace SchoolManagement
 {
     public class Startup

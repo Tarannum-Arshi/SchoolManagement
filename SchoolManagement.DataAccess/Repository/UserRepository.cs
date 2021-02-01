@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using SchoolManagement.DataAccess.Data;
+using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace SchoolManagement.DataAccess.Data.Repository
+namespace SchoolManagement.DataAccess.Repository
 {
     public class UserRepository : Repository<UserModel> , IUserRepository
     {
@@ -18,10 +19,15 @@ namespace SchoolManagement.DataAccess.Data.Repository
             _db = db;
 
         }
-
-        public void Update(UserModel UserModel)
+        public void Update(UserModel usermodel)
         {
-
+            var objFromDb = _db.UserModel.FirstOrDefault(s => s.UserId == usermodel.UserId);
+            if (objFromDb != null)
+            {
+                objFromDb.FirstName = usermodel.FirstName;
+                _db.SaveChanges();
+            }
         }
+
     }
 }

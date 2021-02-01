@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SchoolManagement.DataAccess.Data;
+using SchoolManagement.DataAccess.Repository.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.DataAccess.Data.Repository.IRepository
+namespace SchoolManagement.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

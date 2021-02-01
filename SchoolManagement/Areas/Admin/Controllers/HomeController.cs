@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,22 +12,37 @@ namespace SchoolManagement.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-                public IActionResult Register(UserModel UserModel)
-                {
-                    //UserModel.Role = "u";
-                    
-                        _unitOfWork.UserModel.Add(UserModel);
+        public IActionResult Register(string firstName, string lastName, string gender, DateTime dob, string email, string password)
+        {
+            UserModel usermodel = new UserModel();
+            usermodel.FirstName = firstName;
+            usermodel.LastName = lastName;
+            usermodel.Gender = gender;
+            usermodel.DOB = dob;
+            usermodel.Email = email;
+            usermodel.Password = password;
+            usermodel.Role = "u";
 
-                        _unitOfWork.Save();
-                        return RedirectToAction("Register", "Home", new { area = "Admin" });
-                    
-                }
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.UserModel.Add(usermodel);
+
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(usermodel);
+        }
         public IActionResult Register()
         {
             UserModel Index = new UserModel();

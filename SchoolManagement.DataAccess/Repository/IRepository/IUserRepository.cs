@@ -5,10 +5,10 @@ using System.Linq.Expressions;
 using System.Linq;
 using SchoolManagement.Models.ViewModels;
 
-namespace SchoolManagement.DataAccess.Data.Repository.IRepository
+namespace SchoolManagement.DataAccess.Repository.IRepository
 {
     public interface IUserRepository : IRepository<UserModel>
     {
-        void Update(UserModel UserModel);
+        void Update(UserModel usermodel);
     }
 }
