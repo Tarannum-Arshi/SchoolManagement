@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.Areas.Student
+namespace SchoolManagement.Areas.Student.Controllers
 {
     [Area("Student")]
     public class StudentController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        public readonly IUnitOfWork _unitOfWork;
+
         public StudentController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -20,7 +21,7 @@ namespace SchoolManagement.Areas.Student
         {
             return View();
         }
-
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
@@ -34,7 +35,7 @@ namespace SchoolManagement.Areas.Student
                 return RedirectToAction(nameof(Index));
             }
             return View(studentmodel);
-        }
+    }
         public IActionResult SRegister()
         {
             StudentModel studentModel = new StudentModel();
@@ -42,3 +43,4 @@ namespace SchoolManagement.Areas.Student
         }
     }
 }
+

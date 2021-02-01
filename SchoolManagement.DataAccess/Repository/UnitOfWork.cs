@@ -13,14 +13,19 @@ namespace SchoolManagement.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            StudentModel = new UserRepository(_db);
+            UserModel = new UserRepository(_db);
+            TeacherModel = new TeacherRepository(_db);
+            StudentModel = new StudentRepository(_db);
             
-            //SPCall = new SPCall(_db);
+            SPCall = new SPCall(_db);
         }
 
-        public IUserRepository StudentModel { get; private set; }
-       
-        //public ISPCall SPCall { get; private set; }
+        public IUserRepository UserModel { get; private set; }
+        public ITeacherRepository TeacherModel { get; private set; }
+
+        public IStudentRepository StudentModel { get; private set; }
+
+        public ISPCall SPCall { get; private set; }
 
 
         public void Dispose()

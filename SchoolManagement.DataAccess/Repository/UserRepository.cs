@@ -17,7 +17,6 @@ namespace SchoolManagement.DataAccess.Repository
         public UserRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-
         }
 
         public void Add(StudentModel studentmodel)

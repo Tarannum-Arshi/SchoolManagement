@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(IUnitOfWork unitOfWork)
+        public AdminController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -23,10 +23,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
+        public IActionResult Register(UserModel usermodel)
         {
-            UserModel usermodel = new UserModel();
-            usermodel.Role = "u";
+            usermodel.Role = "a";
 
             if (ModelState.IsValid)
             {

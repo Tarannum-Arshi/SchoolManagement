@@ -8,7 +8,11 @@ namespace SchoolManagement.DataAccess.Repository.IRepository
     {
         IUserRepository StudentModel { get; }
 
-        //ISPCall SPCall { get; }
+        IStudentRepository StudentModel { get; }
+
+        ITeacherRepository TeacherModel { get; }
+
+        ISPCall SPCall { get; }
         void Save();
     }
 }

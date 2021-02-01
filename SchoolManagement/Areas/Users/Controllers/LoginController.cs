@@ -11,9 +11,14 @@ using System.Threading.Tasks;
 
 namespace SchoolManagement.Areas.Users.Controllers
 {
+    [Area("Users")]
     public class LoginController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
+        public LoginController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
         public IActionResult Login()
         {
             return View();
@@ -35,14 +40,26 @@ namespace SchoolManagement.Areas.Users.Controllers
                     new Claim("id", admin.UserId.ToString()),
                     new Claim("names", admin.FirstName.ToString()),
                     new Claim("email", admin.Email.ToString()),
-                    new Claim(ClaimTypes.Role, admin.Role)
+                    new Claim("role", admin.Role.ToString())
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                     var principal = new ClaimsPrincipal(identity);
 
                     var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                    return RedirectToAction("NewRegister", "ALogin", new { area = "Users" });
+                    string value = admin.Role.ToString();
+                    if (value== "a")
+                    {
+                        return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                    }
+                    else if(value == "t")
+                    {
+                        return RedirectToAction("Index", "Teacher", new { area = "Teacher" });
+                    }
+                    else if(value == "s")
+                    {
+                        return RedirectToAction("Index", "Student", new { area = "Student" });
+                    }
                 }
                 else
                 {
