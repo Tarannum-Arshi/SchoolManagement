@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,20 +15,20 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             return View();
         }
-        // [HttpPost]
-        //public IActionResult Register(Admin admin)
-        //{
-        //    admin.Category = "u";
+        [HttpPost]
+        public IActionResult Register(UserModel UserModel)
+        {
+            UserModel.Role = "u";
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unitOfWork.Admin.Add(admin);
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.UserModel.Add(UserModel);
 
-        //        _unitOfWork.Save();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(admin);
-        //}
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(UserModel);
+        }
 
     }
 }
