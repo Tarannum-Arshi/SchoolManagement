@@ -35,7 +35,7 @@ namespace SchoolManagement.Areas.Users.Controllers
                     new Claim("id", admin.UserId.ToString()),
                     new Claim("names", admin.FirstName.ToString()),
                     new Claim("email", admin.Email.ToString()),
-                    new Claim(ClaimTypes.Role, admin.Category)
+                    new Claim(ClaimTypes.Role, admin.Role)
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                     var principal = new ClaimsPrincipal(identity);
