@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,23 @@ namespace SchoolManagement.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public HomeController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(UserModel UserModel)
         {
-            user.Category = "u";
+            UserModel.Role = "u";
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.User.Add(user);
+                _unitOfWork.UserModel.Add(UserModel);
 
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(user);
+            return View(UserModel);
         }
 
     }
