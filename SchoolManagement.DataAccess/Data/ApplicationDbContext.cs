@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SchoolManagement.Models.ViewModels;
 
 namespace SchoolManagement.DataAccess.Data
 {
@@ -14,5 +15,9 @@ namespace SchoolManagement.DataAccess.Data
         {
 
         }
+        public DbSet<UserModel> UserModel { get; set; }
+        public DbSet<StudentModel> StudentModel { get; set; }
+        public DbSet<TeacherModel> TeacherModel { get; set; }
+        public DbSet<ClassModel> ClassModel { get; set; }
     }
 }
