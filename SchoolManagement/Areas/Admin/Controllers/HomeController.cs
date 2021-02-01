@@ -17,17 +17,22 @@ namespace SchoolManagement.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(UserModel UserModel)
         {
             UserModel.Role = "u";
 
-            if (ModelState.IsValid)
-            {
+           
                 _unitOfWork.UserModel.Add(UserModel);
 
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
-            }
+                return RedirectToAction("Register", "Home", new { area="Admin"});
+            
+           
+        }
+        public IActionResult Register()
+        {
+            UserModel UserModel = new UserModel();
             return View(UserModel);
         }
 
