@@ -11,6 +11,6 @@ namespace SchoolManagement.DataAccess.Repository.IRepository
     {
 
         void Update(UserModel usermodel);
-        void Add(StudentModel studentmodel);
+       
     }
 }

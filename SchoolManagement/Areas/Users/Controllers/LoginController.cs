@@ -33,7 +33,7 @@ namespace SchoolManagement.Areas.Users.Controllers
 
             if (ModelState.IsValid)
             {
-                var admin = _unitOfWork.StudentModel.GetFirstOrDefault(a => a.Email == email && a.Password == password);
+                var admin = _unitOfWork.UserModel.GetFirstOrDefault(a => a.Email == email && a.Password == password);
                 if (admin != null)
                 {
                     var identity = new ClaimsIdentity(new[] {

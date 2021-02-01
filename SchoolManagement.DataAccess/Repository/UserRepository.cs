@@ -19,10 +19,7 @@ namespace SchoolManagement.DataAccess.Repository
             _db = db;
         }
 
-        public void Add(StudentModel studentmodel)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public void Update(UserModel usermodel)
         {

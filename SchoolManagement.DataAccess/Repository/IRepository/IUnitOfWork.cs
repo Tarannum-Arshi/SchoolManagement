@@ -6,7 +6,7 @@ namespace SchoolManagement.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserRepository StudentModel { get; }
+        IUserRepository UserModel { get; }
 
         IStudentRepository StudentModel { get; }
 
