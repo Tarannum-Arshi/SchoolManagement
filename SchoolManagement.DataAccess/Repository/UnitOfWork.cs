@@ -13,12 +13,12 @@ namespace SchoolManagement.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            UserModel = new UserRepository(_db);
+            StudentModel = new UserRepository(_db);
             
             //SPCall = new SPCall(_db);
         }
 
-        public IUserRepository UserModel { get; private set; }
+        public IUserRepository StudentModel { get; private set; }
        
         //public ISPCall SPCall { get; private set; }
 

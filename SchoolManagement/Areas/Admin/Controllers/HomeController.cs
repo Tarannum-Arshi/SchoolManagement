@@ -23,30 +23,24 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(string firstName, string lastName, string gender, DateTime dob, string email, string password)
+        public IActionResult Register(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
         {
             UserModel usermodel = new UserModel();
-            usermodel.FirstName = firstName;
-            usermodel.LastName = lastName;
-            usermodel.Gender = gender;
-            usermodel.DOB = dob;
-            usermodel.Email = email;
-            usermodel.Password = password;
             usermodel.Role = "u";
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.UserModel.Add(usermodel);
+                _unitOfWork.StudentModel.Add(usermodel);
 
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
+                return View();
             }
             return View(usermodel);
         }
         public IActionResult Register()
         {
-            UserModel Index = new UserModel();
-            return View(Index);
+            UserModel usermodel = new UserModel();
+            return View();
         }
 
        
