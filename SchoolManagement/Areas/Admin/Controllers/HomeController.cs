@@ -38,9 +38,16 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         public IActionResult Register()
         {
-            UserModel UserModel = new UserModel();
-            return View(UserModel);
+            UserModel Index = new UserModel();
+            return View(Index);
         }
 
+       
+                
+            
+           
+        }
+        
+
     }
-}
+

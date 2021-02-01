@@ -20,5 +20,30 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+                public IActionResult Register(UserModel UserModel)
+                {
+                    //UserModel.Role = "u";
+                    
+                        _unitOfWork.UserModel.Add(UserModel);
+
+                        _unitOfWork.Save();
+                        return RedirectToAction("Register", "Home", new { area = "Admin" });
+                    
+                }
+        public IActionResult Register()
+        {
+            UserModel Index = new UserModel();
+            return View(Index);
+        }
+
+       
+                
+            
+           
+        }
+        
+
     }
-}
+
