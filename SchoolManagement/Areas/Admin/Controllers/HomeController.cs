@@ -17,6 +17,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(UserModel UserModel)
         {
             UserModel.Role = "u";
@@ -31,8 +32,8 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         public IActionResult Register()
         {
-            UserModel userModel = new UserModel();
-            return View(userModel);
+            UserModel UserModel = new UserModel();
+            return View(UserModel);
         }
 
     }

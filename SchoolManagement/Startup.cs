@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +33,8 @@ namespace SchoolManagement
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                {
-                   options.LoginPath = new PathString("/Admin/User/Login");
-                   options.AccessDeniedPath = new PathString("/Compounder/User/UserSignUp");
+                   options.LoginPath = new PathString("/User/Login/Login");
+                   options.AccessDeniedPath = new PathString("/User/Login/Login");
                });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllersWithViews();
