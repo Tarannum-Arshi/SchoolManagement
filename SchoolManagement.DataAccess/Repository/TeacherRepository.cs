@@ -10,13 +10,16 @@ using System.Text;
 
 namespace SchoolManagement.DataAccess.Repository
 {
-    public class UserRepository : Repository<UserModel> , IUserRepository
+    public class TeacherRepository : Repository<TeacherModel> , ITeacherRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public UserRepository(ApplicationDbContext db) : base(db)
+        public TeacherRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+
         }
+
+        
     }
 }
