@@ -33,8 +33,8 @@ namespace SchoolManagement
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                {
-                   options.LoginPath = new PathString("/User/Login/Login");
-                   options.AccessDeniedPath = new PathString("/User/Login/Login");
+                   options.LoginPath = new PathString("/Users/Login/Login");
+                   options.AccessDeniedPath = new PathString("/Users/Login/Login");
                });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllersWithViews();
@@ -64,7 +64,7 @@ namespace SchoolManagement
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{Area=Admin}/{controller=Home}/{action=Register}/{id?}");
+                    pattern: "{Area=Users}/{controller=Login}/{action=Login}/{id?}");
             });
         }
     }

@@ -19,13 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Student\Controllers\" />
-    <Folder Include="Areas\Student\Views\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
-    <Folder Include="Areas\Teacher\Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.DataAccess\SchoolManagement.DataAccess.csproj" />
     <ProjectReference Include="..\SchoolManagement.Models\SchoolManagement.Models.csproj" />
     <ProjectReference Include="..\SchoolManagement.Utility\SchoolManagement.Utility.csproj" />
