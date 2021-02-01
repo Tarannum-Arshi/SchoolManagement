@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(UserModel UserModel)
+        public IActionResult Register(UserModel usermodel)
         {
-            UserModel.Role = "u";
+            usermodel.Role = "u";
 
-           
-                _unitOfWork.UserModel.Add(UserModel);
+
+            _unitOfWork.UserModel.Add(usermodel);
 
                 _unitOfWork.Save();
                 return RedirectToAction("Register", "Home", new { area="Admin"});

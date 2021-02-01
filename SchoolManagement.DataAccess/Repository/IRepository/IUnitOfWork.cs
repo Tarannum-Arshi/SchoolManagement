@@ -1,8 +1,9 @@
-﻿using System;
+﻿using SchoolManagement.DataAccess.Data.Repository.IRepository;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.DataAccess.Data.Repository.IRepository
+namespace SchoolManagement.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {

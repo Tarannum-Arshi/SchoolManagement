@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using SchoolManagement.DataAccess.Repository.IRepository;
 
 namespace SchoolManagement.Areas.Users.Controllers
 {
