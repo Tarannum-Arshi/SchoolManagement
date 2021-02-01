@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SchoolManagement.DataAccess.Data.Repository.IRepository;
-using SchoolManagement.Models.ViewModels;
+using SchoolManagement.DataAccess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.Areas.Admin.Controllers
+namespace SchoolManagement.Areas.Student.Controllers
 {
-    [Area("Admin")]
+    [Area("Student")]
     public class HomeController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
+
+        public HomeController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
         public IActionResult Index()
         {
             return View();
