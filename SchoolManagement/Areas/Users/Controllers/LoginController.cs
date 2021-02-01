@@ -50,15 +50,15 @@ namespace SchoolManagement.Areas.Users.Controllers
                     string value = admin.Role.ToString();
                     if (value== "a")
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        return RedirectToAction("Index", "Admin", new { area = "Admin" });
                     }
                     else if(value == "t")
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Teacher" });
+                        return RedirectToAction("Index", "Teacher", new { area = "Teacher" });
                     }
                     else if(value == "s")
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Student" });
+                        return RedirectToAction("Index", "Student", new { area = "Student" });
                     }
                 }
                 else
