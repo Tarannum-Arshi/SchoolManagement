@@ -37,6 +37,7 @@ namespace SchoolManagement
                    options.AccessDeniedPath = new PathString("/User/Login/Login");
                });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //To access unit of work we have to register and then unit of work is add as a part of dependency enjection
             services.AddControllersWithViews();
         }
 
