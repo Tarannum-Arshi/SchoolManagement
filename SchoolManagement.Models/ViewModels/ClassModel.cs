@@ -20,6 +20,7 @@ namespace SchoolManagement.Models.ViewModels
         public TeacherModel TeacherModel { get; set; }    
 
         [Required]
+        [Range(1000, 50000)]
         public int FeeCharge { get; set; }
 
     }

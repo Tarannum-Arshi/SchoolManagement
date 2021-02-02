@@ -137,7 +137,39 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult AddClass()
         {
-
+            ClassModel classmodel = new ClassModel();
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddClass()
+        {
+            UserModel usermodel = new UserModel();
+            usermodel.FirstName = FirstName;
+            usermodel.LastName = LastName;
+            usermodel.Gender = Gender;
+            usermodel.DOB = DOB;
+            usermodel.Email = Email;
+            usermodel.Password = Password;
+            TeacherModel teachermodel = new TeacherModel();
+            teachermodel.Salary = Salary;
+            var parameters = new DynamicParameters();
+            parameters.Add("FirstName", FirstName);
+            parameters.Add("LastName", LastName);
+            parameters.Add("Gender", Gender);
+            parameters.Add("DOB", DOB);
+            parameters.Add("Email", Email);
+            parameters.Add("Password", Password);
+            parameters.Add("Salary", Salary);
+            //usermodel.Role = "t";
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
+                _unitOfWork.Save();
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                //Vaibhav
+            }
+            return View(usermodel);
         }
 
 
