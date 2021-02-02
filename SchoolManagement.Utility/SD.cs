@@ -11,6 +11,7 @@ namespace SchoolManagement.Utility
         public const string Drop = "getUserIdName";
         public const string GetFee = "getFeeOfStudent";
 
+        public const string ClassCreate = "classCreation";
 
     }
 }

@@ -139,7 +139,28 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
             ViewBag.Data = usermodels;
+
+
             return View();
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult AddClass(int TeacherId, int UserId, int Class, int FeeCharge)
+        {
+            //dropdownlist.ClearSelection();
+            //dropdownlist.Items.FindByValue(value).Selected = true;
+            ClassModel classmodel = new ClassModel();
+            TeacherModel teachermodel = new TeacherModel();
+            teachermodel.TeacherId = UserId;
+            classmodel.TeacherId = UserId;
+            classmodel.Class= Class;
+            classmodel.FeeCharge = FeeCharge;
+            var parameters = new DynamicParameters();
+            parameters.Add("TeacherId", UserId);
+            parameters.Add("Class", Class);
+            parameters.Add("FeeCharge", FeeCharge);
+            _unitOfWork.SPCall.List<ClassModel>(SD.ClassCreate, parameters);
+            return RedirectToAction("Index", "Admin", new { area = "Admin" });
         }
 
 
