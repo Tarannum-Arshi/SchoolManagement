@@ -1,8 +1,7 @@
-﻿
-@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var title = "Create User";
+    var title = "Register New Teacher";
 }
 
 
@@ -61,6 +60,15 @@
                     <input name="Password" type="password" class="form-control" />
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Salary
+                </div>
+                <div class="col-8">
+                    <input name="Salary" type="number" class="form-control" />
+                </div>
+            </div>
+           
             <div class="form-group row">
                 <div class="col-8 offset-4">
                     <div class="row">

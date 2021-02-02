@@ -6,8 +6,7 @@ namespace SchoolManagement.Utility
 {
     public static class SD
     {
-        //comment added by vaibhavakash
-        //hi
+        public const string Stud_Reg = "Registration";
     }
 }
-//akash
+
