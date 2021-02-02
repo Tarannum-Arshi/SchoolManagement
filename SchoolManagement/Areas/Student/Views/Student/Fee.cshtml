@@ -1,3 +1,10 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Fee Payment";
 }
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary"> Your due fees= @User.FindFirst("fee").Value </h2>
+    </div>
+</div>
