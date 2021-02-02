@@ -33,7 +33,7 @@
                     TeacherName
                 </div>
                 <div class="col-8">
-                    <input name="FirstName" class="form-control" />
+                    @Html.DropDownList("UserModel" , new SelectList(ViewBag.data, "UserId", "Name"))
                 </div>
             </div>
            

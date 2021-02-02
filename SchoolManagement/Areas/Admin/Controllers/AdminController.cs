@@ -137,39 +137,30 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult AddClass()
         {
-            ClassModel classmodel = new ClassModel();
+            var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
+            ViewBag.Data = usermodels;
+
+
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddClass()
+        [AutoValidateAntiforgeryToken]
+        public IActionResult AddClass(int TeacherId, int UserId, int Class, int FeeCharge)
         {
-            UserModel usermodel = new UserModel();
-            usermodel.FirstName = FirstName;
-            usermodel.LastName = LastName;
-            usermodel.Gender = Gender;
-            usermodel.DOB = DOB;
-            usermodel.Email = Email;
-            usermodel.Password = Password;
+            //dropdownlist.ClearSelection();
+            //dropdownlist.Items.FindByValue(value).Selected = true;
+            ClassModel classmodel = new ClassModel();
             TeacherModel teachermodel = new TeacherModel();
-            teachermodel.Salary = Salary;
+            teachermodel.TeacherId = UserId;
+            classmodel.TeacherId = UserId;
+            classmodel.Class= Class;
+            classmodel.FeeCharge = FeeCharge;
             var parameters = new DynamicParameters();
-            parameters.Add("FirstName", FirstName);
-            parameters.Add("LastName", LastName);
-            parameters.Add("Gender", Gender);
-            parameters.Add("DOB", DOB);
-            parameters.Add("Email", Email);
-            parameters.Add("Password", Password);
-            parameters.Add("Salary", Salary);
-            //usermodel.Role = "t";
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
-                _unitOfWork.Save();
-                return RedirectToAction("Index", "Admin", new { area = "Admin" });
-                //Vaibhav
-            }
-            return View(usermodel);
+            parameters.Add("TeacherId", UserId);
+            parameters.Add("Class", Class);
+            parameters.Add("FeeCharge", FeeCharge);
+            _unitOfWork.SPCall.List<ClassModel>(SD.ClassCreate, parameters);
+            return RedirectToAction("Index", "Admin", new { area = "Admin" });
         }
 
 
