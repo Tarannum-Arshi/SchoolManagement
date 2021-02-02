@@ -65,7 +65,7 @@ namespace SchoolManagement
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{Area=Users}/{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{Area=Admin}/{controller=Admin}/{action=NewRegister}/{id?}");
             });
         }
     }

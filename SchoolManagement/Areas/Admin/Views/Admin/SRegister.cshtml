@@ -1,5 +1,4 @@
-﻿
-@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var title = "Register New Student";
@@ -34,7 +33,7 @@
                     Gender
                 </div>
                 <div class="col-8">
-                    <input name="Gender" class="form-control" />
+                    <input name="Gender"  class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -42,7 +41,7 @@
                     DOB
                 </div>
                 <div class="col-8">
-                    <input name="DOB" class="form-control" />
+                    <input name="DOB" type="date" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -50,7 +49,7 @@
                     Email
                 </div>
                 <div class="col-8">
-                    <input name="Email" class="form-control" />
+                    <input name="Email" type="email" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -58,7 +57,7 @@
                     Password
                 </div>
                 <div class="col-8">
-                    <input name="Password" class="form-control" />
+                    <input name="Password" type="password" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -66,7 +65,7 @@
                     Class
                 </div>
                 <div class="col-8">
-                    <input name="Class" class="form-control" />
+                    <input name="ClassId"  class="form-control" />
                 </div>
             </div>
             <div class="form-group row">

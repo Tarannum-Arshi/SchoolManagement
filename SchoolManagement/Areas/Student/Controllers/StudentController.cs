@@ -22,25 +22,7 @@ namespace SchoolManagement.Areas.Student.Controllers
             return View();
         }
       
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult SRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
-        {
-            StudentModel studentmodel = new StudentModel();
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.StudentModel.Add(studentmodel);
-
-                _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(studentmodel);
-    }
-        public IActionResult SRegister()
-        {
-            StudentModel studentModel = new StudentModel();
-            return View();
-        }
+        
     }
 }
 

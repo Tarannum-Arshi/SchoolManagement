@@ -4,8 +4,30 @@
     ViewData["Title"] = "SchoolManagement";
 }
 
-<div class="col-6 text-right">
+<div>
+    <ul>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register Section
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/Admin/Admin/TRegister">Register New Teacher</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/Admin/Admin/SRegister">Register New Student</a>
+            </div>
+        </li>
 
-    <a class="btn btn-primary" asp-area="Teacher" asp-controller="Teacher" asp-action="Register">Register Teacher</a>
-    <a class="btn btn-primary" asp-area="Student" asp-controller="Student" asp-action="Register">Register Student</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Edit Section
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/Admin/Admin/UEdit">Edit Teacher Details</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/Admin/Admin/SEdit">Edit Student Details</a>
+            </div>
+        </li>
+    </ul>
+    
+
 </div>
