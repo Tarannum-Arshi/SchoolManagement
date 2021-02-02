@@ -21,7 +21,12 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
-      
+        public IActionResult Fee()
+        {
+
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
