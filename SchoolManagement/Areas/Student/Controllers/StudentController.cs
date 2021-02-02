@@ -31,13 +31,13 @@ namespace SchoolManagement.Areas.Student.Controllers
             string claimvalue = User.FindFirst("id").Value;
             var parameters = new DynamicParameters();
             parameters.Add("UserId", claimvalue);
-            var fee = _unitOfWork.SPCall.Single<ClassModel>(SD.GetFee ,parameters);
-            var identity = new ClaimsIdentity(new[] {
-            new Claim("fee", fee.FeeCharge.ToString()) 
-            }, CookieAuthenticationDefaults.AuthenticationScheme);
+            var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
+            //var identity = new ClaimsIdentity(new[] {
+            //new Claim("fee", Fee.FeeCharge.ToString()) 
+            //}, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var principal = new ClaimsPrincipal(identity);
-            var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            //var principal = new ClaimsPrincipal(identity);
+            //var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
             return View(fee);
         }

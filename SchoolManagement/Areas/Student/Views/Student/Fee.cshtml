@@ -1,10 +1,14 @@
-﻿
+﻿@model IEnumerable<SchoolManagement.Models.ViewModels.Fee>
+
 @{
     ViewData["Title"] = "Fee Payment";
 }
 
+@foreach (var blog in Model)
+{
 <div class="row">
     <div class="col-6">
-        <h2 class="text-primary"> Your due fees= @User.FindFirst("fee").Value </h2>
+        <h2 class="text-primary"> Your due fees= @blog.FeeCharge </h2>
     </div>
 </div>
+}
