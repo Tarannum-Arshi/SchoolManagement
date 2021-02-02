@@ -70,7 +70,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("DOB", DOB);
             parameters.Add("Email", Email);
             parameters.Add("Password", Password);
-            parameters.Add("ClassId", Class);
+            parameters.Add("Class", Class);
           
             if (ModelState.IsValid)
             {
@@ -100,6 +100,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             usermodel.Email = Email;
             usermodel.Password = Password;
             TeacherModel teachermodel = new TeacherModel();
+            teachermodel.Salary = Salary;
             var parameters = new DynamicParameters();
             parameters.Add("FirstName", FirstName);
             parameters.Add("LastName", LastName);
@@ -107,11 +108,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("DOB", DOB);
             parameters.Add("Email", Email);
             parameters.Add("Password", Password);
+            parameters.Add("Salary", Salary);
             //usermodel.Role = "t";
             if (ModelState.IsValid)
             {
-                _unitOfWork.UserModel.Add(usermodel);
-
+                _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
                 _unitOfWork.Save();
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 //Vaibhav
@@ -132,6 +133,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 return NotFound();
             }
             return View(usermodel);
+        }
+
+        public IActionResult AddClass()
+        {
+
         }
 
 
