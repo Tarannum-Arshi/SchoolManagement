@@ -19,5 +19,7 @@ namespace SchoolManagement.DataAccess.Data
         public DbSet<StudentModel> StudentModel { get; set; }
         public DbSet<TeacherModel> TeacherModel { get; set; }
         public DbSet<ClassModel> ClassModel { get; set; }
+        public DbSet<Drop> Drop { get; set; }
+
     }
 }

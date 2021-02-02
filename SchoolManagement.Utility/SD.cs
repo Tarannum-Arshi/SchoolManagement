@@ -8,6 +8,8 @@ namespace SchoolManagement.Utility
     {
         public const string Stud_Reg = "Registration";
         public const string Teacher_Reg = "TeacherRegister";
+        public const string Drop = "getUserIdName";
+
     }
 }
 

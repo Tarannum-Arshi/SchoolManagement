@@ -137,7 +137,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult AddClass()
         {
-
+            var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
+            ViewBag.Data = usermodels;
+            return View();
         }
 
 
