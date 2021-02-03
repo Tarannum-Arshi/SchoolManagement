@@ -8,7 +8,7 @@ namespace SchoolManagement.Models.ViewModels
     public class UserModel
     {
         [Key]
-        public int UserId { get; set; }
+        public int inUserId { get; set; }
 
         [Required]
         [MaxLength(40)]
