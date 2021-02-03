@@ -30,7 +30,7 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             string claimvalue = User.FindFirst("id").Value;
             var parameters = new DynamicParameters();
-            parameters.Add("UserId", claimvalue);
+            parameters.Add("inUserId", claimvalue);
             var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
             //var identity = new ClaimsIdentity(new[] {
             //new Claim("fee", Fee.FeeCharge.ToString()) 

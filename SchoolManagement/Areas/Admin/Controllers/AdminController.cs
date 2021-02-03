@@ -23,6 +23,31 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult StudentRegister()
+        {
+            return View();
+        }
+
+        public IActionResult TeacherRegister()
+        {
+            return View();
+        }
+
+        public IActionResult AddClass()
+        {
+            var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
+            ViewBag.Data = usermodels;
+            return View();
+        }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
@@ -66,7 +91,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password, int Class)
+        public IActionResult StudentRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password, int Class)
         {
             UserModel usermodel = new UserModel();
             usermodel.FirstName = FirstName;
@@ -78,14 +103,14 @@ namespace SchoolManagement.Areas.Admin.Controllers
             StudentModel studentmodel = new StudentModel();
             studentmodel.Class = Class;
             var parameters = new DynamicParameters();
-            parameters.Add("FirstName", FirstName);
-            parameters.Add("LastName", LastName);
-            parameters.Add("Gender", Gender);
-            parameters.Add("DOB", DOB);
-            parameters.Add("Email", Email);
-            parameters.Add("Password", Password);
-            parameters.Add("Class", Class);
-
+            parameters.Add("stFirstName", FirstName);
+            parameters.Add("stLastName", LastName);
+            parameters.Add("stGender", Gender);
+            parameters.Add("dtDOB", DOB);
+            parameters.Add("stEmail", Email);
+            parameters.Add("stPassword", Password);
+            parameters.Add("inClass", Class);
+          
             if (ModelState.IsValid)
             {
                 _unitOfWork.SPCall.List<StudentModel>(SD.Stud_Reg, parameters);
@@ -96,15 +121,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(usermodel);
         }
-        public IActionResult SRegister()
-        {
-            UserModel usermodel = new UserModel();
-            return View();
-        }
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult TRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password, int Salary)
+        public IActionResult TeacherRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password, int Salary)
         {
             UserModel usermodel = new UserModel();
             usermodel.FirstName = FirstName;
@@ -116,14 +137,13 @@ namespace SchoolManagement.Areas.Admin.Controllers
             TeacherModel teachermodel = new TeacherModel();
             teachermodel.Salary = Salary;
             var parameters = new DynamicParameters();
-            parameters.Add("FirstName", FirstName);
-            parameters.Add("LastName", LastName);
-            parameters.Add("Gender", Gender);
-            parameters.Add("DOB", DOB);
-            parameters.Add("Email", Email);
-            parameters.Add("Password", Password);
-            parameters.Add("Salary", Salary);
-            //usermodel.Role = "t";
+            parameters.Add("stFirstName", FirstName);
+            parameters.Add("stLastName", LastName);
+            parameters.Add("stGender", Gender);
+            parameters.Add("dtDOB", DOB);
+            parameters.Add("stEmail", Email);
+            parameters.Add("stPassword", Password);
+            parameters.Add("inSalary", Salary);
             if (ModelState.IsValid)
             {
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
@@ -133,36 +153,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(usermodel);
         }
-        public IActionResult TRegister()
-        {
-            UserModel usermodel = new UserModel();
-            return View();
-        }
-        public IActionResult SEdit(int? id)
-        {
-            UserModel usermodel = new UserModel();
-            usermodel = _unitOfWork.UserModel.Get(id.GetValueOrDefault());
-            if (usermodel == null)
-            {
-                return NotFound();
-            }
-            return View(usermodel);
-        }
-
-        public IActionResult AddClass()
-        {
-            var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
-            ViewBag.Data = usermodels;
-
-
-            return View();
-        }
+        
+        
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult AddClass(int TeacherId, int UserId, int Class, int FeeCharge)
         {
-            //dropdownlist.ClearSelection();
-            //dropdownlist.Items.FindByValue(value).Selected = true;
             ClassModel classmodel = new ClassModel();
             TeacherModel teachermodel = new TeacherModel();
             teachermodel.TeacherId = UserId;
@@ -170,9 +166,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
             classmodel.Class = Class;
             classmodel.FeeCharge = FeeCharge;
             var parameters = new DynamicParameters();
-            parameters.Add("TeacherId", UserId);
-            parameters.Add("Class", Class);
-            parameters.Add("FeeCharge", FeeCharge);
+            parameters.Add("inTeacherId", UserId);
+            parameters.Add("inClass", Class);
+            parameters.Add("inFeeCharge", FeeCharge);
             _unitOfWork.SPCall.List<ClassModel>(SD.ClassCreate, parameters);
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
         }
