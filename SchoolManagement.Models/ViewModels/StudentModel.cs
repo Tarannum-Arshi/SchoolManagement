@@ -13,7 +13,7 @@ namespace SchoolManagement.Models.ViewModels
 
         [Required]
         [ForeignKey("ClassModel")]
-        public int ClassId { get; set; }
+        public int Class { get; set; }
         public ClassModel ClassModel { get; set; }
 
         [Required]

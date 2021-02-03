@@ -6,8 +6,13 @@ namespace SchoolManagement.Utility
 {
     public static class SD
     {
-        //comment added by vaibhavakash
-        //hi
+        public const string Stud_Reg = "Registration";
+        public const string Teacher_Reg = "TeacherRegister";
+        public const string Drop = "getUserIdName";
+        public const string GetFee = "getFeeOfStudent";
+
+        public const string ClassCreate = "classCreation";
+
     }
 }
-//akash
+

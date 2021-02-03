@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.DataAccess.Data;
 
 namespace SchoolManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210202112137_addtable")]
+    partial class addtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,21 +262,6 @@ namespace SchoolManagement.DataAccess.Migrations
                     b.HasKey("DropId");
 
                     b.ToTable("Drop");
-                });
-
-            modelBuilder.Entity("SchoolManagement.Models.ViewModels.Fee", b =>
-                {
-                    b.Property<int>("FeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("FeeCharge")
-                        .HasColumnType("int");
-
-                    b.HasKey("FeeId");
-
-                    b.ToTable("Fee");
                 });
 
             modelBuilder.Entity("SchoolManagement.Models.ViewModels.StudentModel", b =>
