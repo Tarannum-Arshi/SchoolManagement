@@ -32,23 +32,37 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.UserModel.Add(usermodel);
-
+                if (usermodel.UserId == 0)
+                {
+                    _unitOfWork.UserModel.Add(usermodel);
+                }
+                else
+                {
+                    _unitOfWork.UserModel.Update(usermodel);
+                }
                 _unitOfWork.Save();
-                return View();
+
             }
             return View(usermodel);
         }
-        public IActionResult Register()
+        public IActionResult Register(int? id)
         {
             UserModel usermodel = new UserModel();
-            return View();
+            if (id == null)
+            {
+                return View(usermodel);
+            }
+            usermodel = _unitOfWork.UserModel.Get(id.GetValueOrDefault());
+            if (usermodel == null)
+            {
+                return NotFound();
+            }
+            return View(usermodel);
         }
 
-        public IActionResult NewRegister()
-        {
-            return View();
-        }
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -71,13 +85,13 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("Email", Email);
             parameters.Add("Password", Password);
             parameters.Add("Class", Class);
-          
+
             if (ModelState.IsValid)
             {
                 _unitOfWork.SPCall.List<StudentModel>(SD.Stud_Reg, parameters);
 
                 _unitOfWork.Save();
-                return RedirectToAction("Index", "Admin", new { area="Admin"});
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 //Vaibhav
             }
             return View(usermodel);
@@ -128,7 +142,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             UserModel usermodel = new UserModel();
             usermodel = _unitOfWork.UserModel.Get(id.GetValueOrDefault());
-            if(usermodel==null)
+            if (usermodel == null)
             {
                 return NotFound();
             }
@@ -153,7 +167,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             TeacherModel teachermodel = new TeacherModel();
             teachermodel.TeacherId = UserId;
             classmodel.TeacherId = UserId;
-            classmodel.Class= Class;
+            classmodel.Class = Class;
             classmodel.FeeCharge = FeeCharge;
             var parameters = new DynamicParameters();
             parameters.Add("TeacherId", UserId);
@@ -165,7 +179,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
 
     }
-        
 
-    }
+}
 
+    
+
+   
