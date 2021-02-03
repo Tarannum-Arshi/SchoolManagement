@@ -12,6 +12,9 @@ namespace SchoolManagement.Utility
         public const string GetFee = "getFeeOfStudent";
 
         public const string ClassCreate = "classCreation";
+        public const string GetAllDueFee = "getAllDueFee";
+
+
 
     }
 }

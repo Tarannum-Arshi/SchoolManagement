@@ -23,6 +23,31 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult StudentRegister()
+        {
+            return View();
+        }
+
+        public IActionResult TeacherRegister()
+        {
+            return View();
+        }
+
+        public IActionResult AddClass()
+        {
+            var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
+            ViewBag.Data = usermodels;
+            return View();
+        }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
@@ -39,16 +64,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(usermodel);
         }
-        public IActionResult Register()
-        {
-            UserModel usermodel = new UserModel();
-            return View();
-        }
 
-        public IActionResult NewRegister()
-        {
-            return View();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -82,11 +98,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(usermodel);
         }
-        public IActionResult StudentRegister()
-        {
-            UserModel usermodel = new UserModel();
-            return View();
-        }
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -109,7 +121,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("stEmail", Email);
             parameters.Add("stPassword", Password);
             parameters.Add("inSalary", Salary);
-            //usermodel.Role = "t";
             if (ModelState.IsValid)
             {
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
@@ -119,25 +130,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(usermodel);
         }
-        public IActionResult TeacherRegister()
-        {
-            UserModel usermodel = new UserModel();
-            return View();
-        }
-        public IActionResult AddClass()
-        {
-            var usermodels = _unitOfWork.SPCall.List<Drop>(SD.Drop, null);
-            ViewBag.Data = usermodels;
-
-
-            return View();
-        }
+        
+        
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult AddClass(int TeacherId, int UserId, int Class, int FeeCharge)
         {
-            //dropdownlist.ClearSelection();
-            //dropdownlist.Items.FindByValue(value).Selected = true;
             ClassModel classmodel = new ClassModel();
             TeacherModel teachermodel = new TeacherModel();
             teachermodel.TeacherId = UserId;
