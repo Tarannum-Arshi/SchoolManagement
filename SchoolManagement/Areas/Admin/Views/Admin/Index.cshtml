@@ -4,20 +4,19 @@
     ViewData["Title"] = "SchoolManagement";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome Admin</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-<hr />
-<div class="col-6 text-right">
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="TRegister">Register New Teacher</a>
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="SRegister">Register New Student</a>
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="AddClass">Add New Class</a>
-</div>
-<hr />
-<div class="col-6 text-right">
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="TEdit">Edit Teacher Details</a>
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="SEdit">Edit Student Details</a>
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="Edit">Edit Details</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
+    <div class="tab">
+        <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="TeacherRegister">Add New Teacher</a>
+        <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="StudentRegister">Add New Student</a>
+        <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="AddClass">Add Class</a>
+        <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="TEdit">Edit Teacher Details</a>
+        <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="SEdit">Edit Student Details</a>
+        <a class="tablinks" asp-area="Admin" asp-controller="Fee" asp-action="Index">Check Fee Dues</a>
+    </div>
+</body>
+</html>

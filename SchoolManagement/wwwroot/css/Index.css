@@ -1,0 +1,31 @@
+﻿    .tab{
+            float: left;
+            border: 5px solid #80ff80;
+            background-color: #80ff80;
+            width: 30%;
+            height: 820px;
+    }
+
+    .tab a {
+            display: block;
+            background-color: inherit;
+            color: #000000;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 20px;
+    }
+
+    .tab a:hover {
+            background-color: #006600;
+            color: #ffffff;
+    }
+
+    .tab a.active {
+            background-color: #006600;
+            color: #ffffff;
+    }
