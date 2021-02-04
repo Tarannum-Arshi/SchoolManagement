@@ -18,6 +18,11 @@ a {
   border-color: #1861ac;
 }
 
+.header a {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 30px;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;

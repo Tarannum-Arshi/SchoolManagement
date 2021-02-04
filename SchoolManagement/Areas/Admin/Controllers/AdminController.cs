@@ -30,6 +30,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult Register()
         {
+            UserModel usermodel = new UserModel();
             return View();
         }
 
@@ -50,7 +51,20 @@ namespace SchoolManagement.Areas.Admin.Controllers
             return View();
         }
 
+        public IActionResult EditAdmin(int? id)
+        {
+            UserModel usermodel = new UserModel();
+            //string claimvalue = User.FindFirst("id").Value;
+            //int UserId = Convert.ToInt32(claimvalue);
 
+            //usermodel =_unitOfWork.UserModel.Get(UserId);
+            usermodel = _unitOfWork.UserModel.Get(id.GetValueOrDefault());
+            if(usermodel==null)
+            {
+                return NotFound();
+            }
+            return View(usermodel);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -61,38 +75,14 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                if (usermodel.UserId == 0)
-                {
-                    _unitOfWork.UserModel.Add(usermodel);
-                }
-                else
-                {
-                    _unitOfWork.UserModel.Update(usermodel);
-                }
+                _unitOfWork.UserModel.Add(usermodel);
+
                 _unitOfWork.Save();
-
+                return View();
             }
             return View(usermodel);
         }
-        public IActionResult Register(int? id)
-        {
-            UserModel usermodel = new UserModel();
-            if (id == null)
-            {
-                return View(usermodel);
-            }
-            usermodel = _unitOfWork.UserModel.Get(id.GetValueOrDefault());
-            if (usermodel == null)
-            {
-                return NotFound();
-            }
-            return View(usermodel);
-        }
-
-
-
-
-
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult StudentRegister(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password, int Class)
@@ -167,7 +157,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         
         
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult AddClass(int TeacherId, int UserId, int Class, int FeeCharge)
         {
             ClassModel classmodel = new ClassModel();
@@ -182,6 +172,30 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("inFeeCharge", FeeCharge);
             _unitOfWork.SPCall.List<ClassModel>(SD.ClassCreate, parameters);
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult EditAdmin(int UserId, string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password)
+        {
+            UserModel usermodel = new UserModel()
+           {
+                UserId = UserId,
+                FirstName = FirstName,
+                LastName = LastName,
+                Gender = Gender,
+                DOB = DOB,
+                Email = Email,
+                Password = Password
+            };
+            if(ModelState.IsValid)
+            {
+               _unitOfWork.UserModel.Update(usermodel);
+                _unitOfWork.Save();
+            }
+            return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            
         }
 
 
