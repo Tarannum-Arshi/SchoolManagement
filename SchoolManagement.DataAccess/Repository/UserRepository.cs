@@ -19,22 +19,5 @@ namespace SchoolManagement.DataAccess.Repository
             _db = db;
         }
 
-        
-
-        public void Update(UserModel usermodel)
-        {
-            var objFromDb = _db.UserModel.FirstOrDefault(s => s.UserId == usermodel.UserId);
-            if (objFromDb != null)
-            {
-                objFromDb.FirstName = usermodel.FirstName;
-                objFromDb.LastName = usermodel.LastName;
-                objFromDb.Gender = usermodel.Gender;
-                objFromDb.DOB = usermodel.DOB;
-                objFromDb.Email = usermodel.Email;
-                objFromDb.Password = usermodel.Password;
-                _db.SaveChanges();
-            }
-        }
-
     }
 }

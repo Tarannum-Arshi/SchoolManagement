@@ -24,7 +24,8 @@ namespace SchoolManagement.DataAccess.Data
 
         public DbSet<Drop> Drop { get; set; }
         public DbSet<Fee> Fee { get; set; }
-        public DbSet<StudentDetails> StudentDetails { get; set; }
+        public DbSet<DuesFee> DuesFee { get; set; }
+
 
     }
 }

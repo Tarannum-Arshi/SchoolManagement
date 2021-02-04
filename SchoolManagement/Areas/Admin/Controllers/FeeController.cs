@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.Models.ViewModels;
+using SchoolManagement.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+
+            var allfee = _unitOfWork.SPCall.List<DuesFee>(SD.GetAllDueFee, null);
+            return View(allfee);
         }
     }
 }

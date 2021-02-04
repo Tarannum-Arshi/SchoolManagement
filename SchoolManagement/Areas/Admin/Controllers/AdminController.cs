@@ -1,10 +1,12 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
 using SchoolManagement.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,10 +16,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _host;
 
-        public AdminController(IUnitOfWork unitOfWork)
+        public AdminController(IUnitOfWork unitOfWork , IWebHostEnvironment host)
         {
             _unitOfWork = unitOfWork;
+            _host = host;
         }
         public IActionResult Index()
         {
@@ -98,8 +102,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 _unitOfWork.SPCall.List<StudentDetailsModel>(SD.Stud_Reg, parameters);
 
                 _unitOfWork.Save();
+                string emailbody = GetBody("welcome", FirstName, Email, Password);
+                EmailConfig.SendMail(Email, "Welcome", emailbody);
+
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
-                //Vaibhav
+                
             }
             return View(student);
         }
@@ -121,8 +128,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
             {
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
                 _unitOfWork.Save();
+                string emailbody = GetBody("welcome", FirstName, Email, Password);
+                EmailConfig.SendMail(Email, "Welcome", emailbody);
+
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
-                //Vaibhav
+
+                
             }
             return View(teacher);
         }
@@ -157,7 +168,21 @@ namespace SchoolManagement.Areas.Admin.Controllers
             
         }
 
-        
+
+        #region GetEmailBody
+
+        public string GetBody(string type, string Name=" ", string UserId=" " ,string Password=" ", string Notice = " " , string Month=" ", string Amount= " ", string Status=" " , string Assignment= " ")
+        {
+            string str = null;
+            
+
+            switch (type)
+            {
+                case "welcome":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/Welcome.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
 
 
     }
