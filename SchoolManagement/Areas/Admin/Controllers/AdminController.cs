@@ -190,7 +190,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             };
             if(ModelState.IsValid)
             {
-               _unitOfWork.UserModel.Update(usermodel);
+              // _unitOfWork.UserModel.Update(usermodel);
                 _unitOfWork.Save();
             }
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
