@@ -50,12 +50,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
         public IActionResult EditAdmin(int? id)
         {
             UserModel usermodel = new UserModel();
-            //string claimvalue = User.FindFirst("id").Value;
-            //int UserId = Convert.ToInt32(claimvalue);
+            string claimvalue = User.FindFirst("id").Value;
+            int UserId = Convert.ToInt32(claimvalue);
 
-            //usermodel =_unitOfWork.UserModel.Get(UserId);
-            usermodel = _unitOfWork.UserModel.Get(id.GetValueOrDefault());
-            if(usermodel==null)
+            usermodel = _unitOfWork.UserModel.Get(UserId);
+            if (usermodel==null)
             {
                 return NotFound();
             }

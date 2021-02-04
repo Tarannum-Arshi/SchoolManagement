@@ -9,7 +9,7 @@ namespace SchoolManagement.Models.ViewModels
     public class StudentModel
     {
         [Key]
-        public int inStudentId { get; set; }
+        public int StudentId { get; set; }
 
         [Required]
         [ForeignKey("ClassModel")]
