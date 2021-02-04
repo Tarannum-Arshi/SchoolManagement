@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.DataAccess.Data;
 
 namespace SchoolManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204070147_AddStudentDetails")]
+    partial class AddStudentDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,32 +264,6 @@ namespace SchoolManagement.DataAccess.Migrations
                     b.ToTable("Drop");
                 });
 
-            modelBuilder.Entity("SchoolManagement.Models.ViewModels.DuesFee", b =>
-                {
-                    b.Property<int>("DuesFeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Fee")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DuesFeeId");
-
-                    b.ToTable("DuesFee");
-                });
-
             modelBuilder.Entity("SchoolManagement.Models.ViewModels.Fee", b =>
                 {
                     b.Property<int>("FeeId")
@@ -376,23 +352,7 @@ namespace SchoolManagement.DataAccess.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("LeaveDays")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RemainingLeave")
-                        .HasColumnType("int");
-
                     b.Property<int>("Salary")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
-
-                    b.Property<int>("TotalLeave")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
