@@ -1,10 +1,12 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
 using SchoolManagement.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,10 +16,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _host;
 
-        public AdminController(IUnitOfWork unitOfWork)
+        public AdminController(IUnitOfWork unitOfWork , IWebHostEnvironment host)
         {
             _unitOfWork = unitOfWork;
+            _host = host;
         }
         public IActionResult Index()
         {
@@ -116,8 +120,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 _unitOfWork.SPCall.List<StudentModel>(SD.Stud_Reg, parameters);
 
                 _unitOfWork.Save();
+                string emailbody = GetBody("welcome", FirstName, Email, Password);
+                EmailConfig.SendMail(Email, "Welcome", emailbody);
+
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
-                //Vaibhav
+                
             }
             return View(usermodel);
         }
@@ -148,8 +155,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
             {
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
                 _unitOfWork.Save();
+                string emailbody = GetBody("welcome", FirstName, Email, Password);
+                EmailConfig.SendMail(Email, "Welcome", emailbody);
+
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
-                //Vaibhav
+
+                
             }
             return View(usermodel);
         }
@@ -172,6 +183,91 @@ namespace SchoolManagement.Areas.Admin.Controllers
             _unitOfWork.SPCall.List<ClassModel>(SD.ClassCreate, parameters);
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
         }
+
+
+        #region GetEmailBody
+
+        public string GetBody(string type, string Name=" ", string UserId=" " ,string Password=" ", string Notice = " " , string Month=" ", string Amount= " ", string Status=" " , string Assignment= " ")
+        {
+            string str = null;
+            
+
+            switch (type)
+            {
+                case "welcome":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/Welcome.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{UserId}", UserId);
+                    str = str.Replace("{Password}", Password);
+
+
+                    return str;
+
+                    break;
+
+                case "notice":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/Notice.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Notice}", Notice);
+
+
+                    return str;
+                    break;
+
+                case "feepayment":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/FeePayment.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Month}", Month);
+                    str = str.Replace("{Amount}", Amount);
+                    str = str.Replace("{Status}", Status);
+
+                    return str;
+                    break;
+
+                case "feereminder":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/FeeReminder.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Month}", Month);
+
+                    return str;
+                    break;
+
+                case "assignment":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/Assignment.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Assignment}", Assignment);
+
+                    return str;
+                    break;
+
+
+            }
+            return str;
+
+        }
+
+        #endregion
+
 
 
     }
