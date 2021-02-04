@@ -10,7 +10,7 @@ using System.Text;
 
 namespace SchoolManagement.DataAccess.Repository
 {
-    public class StudentRepository : Repository<StudentModel> , IStudentRepository
+    public class StudentRepository : Repository<StudentDetailsModel> , IStudentRepository
     {
         private readonly ApplicationDbContext _db;
 

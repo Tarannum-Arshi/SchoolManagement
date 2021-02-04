@@ -6,10 +6,10 @@ using System.Text;
 
 namespace SchoolManagement.Models.ViewModels
 {
-    public class StudentModel
+    public class StudentDetailsModel
     {
         [Key]
-        public int inStudentId { get; set; }
+        public int StudentId { get; set; }
 
         [Required]
         [ForeignKey("ClassModel")]
