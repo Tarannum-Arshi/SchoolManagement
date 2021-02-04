@@ -1,0 +1,54 @@
+﻿@model SchoolManagement.Models.ViewModels.TeacherModel
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Fee Payment";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
+    <div class="text-sm-right">
+        <h2 class="btn-block">Welcome @User.FindFirst("names").Value  </h2>
+    </div>
+    <div class="text-sm-left">
+        <h5 class="btn-block">Apply for Leave </h5>
+    </div>
+    <div class="text-md-left">
+        <h5 class="btn-block">Remaining Leaves @Model.RemainingLeave </h5>
+    </div>
+<form method="post">
+        <div class="row p-3 border">
+            <div class="col-8 pt-4">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="LeaveDays"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="LeaveDays" id="leavedays" class="form-control" />
+                        <span asp-validation-for="LeaveDays" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="StartDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StartDate" id="StartDate" type="date" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4 offset-4">
+                        <button type="submit" class="btn btn-primary form-control"> Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+</body>
+</html>

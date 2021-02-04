@@ -9,8 +9,9 @@
 <head>
     <link rel="stylesheet" href="~/css/Index.css" />
 </head>
-<body>
+<body> 
     <div class="tab">
+        <h3 class="btn-block">Welcome @User.FindFirst("names").Value  </h3>
         <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="TeacherRegister">Add New Teacher</a>
         <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="StudentRegister">Add New Student</a>
         <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="AddClass">Add Class</a>

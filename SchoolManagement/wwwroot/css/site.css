@@ -13,11 +13,14 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #4CAF50;
+    border-color: #006600;
 }
-
+    .btn-primary:hover {
+        background-color: #006600;
+        color: #ffffff;
+    }
 .header a {
     font-family: "Times New Roman", Times, serif;
     font-size: 30px;
