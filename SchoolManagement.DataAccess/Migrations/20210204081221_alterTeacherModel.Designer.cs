@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.DataAccess.Data;
 
 namespace SchoolManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204081221_alterTeacherModel")]
+    partial class alterTeacherModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,47 +305,6 @@ namespace SchoolManagement.DataAccess.Migrations
                     b.ToTable("Fee");
                 });
 
-            modelBuilder.Entity("SchoolManagement.Models.ViewModels.StudentDetails", b =>
-                {
-                    b.Property<int>("StudentDetailsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Class")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentDetailsId");
-
-                    b.ToTable("StudentDetails");
-                });
-
             modelBuilder.Entity("SchoolManagement.Models.ViewModels.StudentModel", b =>
                 {
                     b.Property<int>("StudentId")
@@ -387,10 +348,6 @@ namespace SchoolManagement.DataAccess.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
 
                     b.Property<int>("TotalLeave")
                         .HasColumnType("int");

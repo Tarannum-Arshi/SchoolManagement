@@ -16,6 +16,9 @@ namespace SchoolManagement.Utility
         public const string GetAllDueFee = "getDueFee";
         public const string EditStudentDetails = "updateStudents";
         public const string GetStudentDetails = "getStudent";
+        public const string ApplyForLeave = "updateTeacherLeave";
+
+
 
 
     }

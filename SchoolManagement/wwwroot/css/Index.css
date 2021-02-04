@@ -35,17 +35,17 @@
             border-collapse: collapse;
             width: 100%;
     }
+    
     #studfee td, #studfee th {
             border: 1px solid #ddd;
             padding: 8px;
     }
-    #studfee tr:nth-child(even) {
-            background-color: #f2f2f2;
-    }
-    #customers tr:hover {
+    
+    #studfee tr:hover {
             background-color: #ddd;
     }
-    #customers th {
+    
+    #studfee th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;

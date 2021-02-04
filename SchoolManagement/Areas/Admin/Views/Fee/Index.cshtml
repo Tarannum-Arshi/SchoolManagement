@@ -12,13 +12,19 @@
     <link rel="stylesheet" href="~/css/Index.css" />
 </head>
 <body>
+    <div class="text-sm-right">
+        <h2 class="btn-block">Welcome @User.FindFirst("names").Value  </h2>
+    </div>
+    <div class="text-sm-left">
+        <h5 class="btn-block">Dues Fee Report </h5>
+    </div>
     <table id="studfee" class="table table-striped table-bordered" style="width:100%">
-            <tr class="table-info">
-                <th>Name</th>
-                <th>Email</th>
-                <th>Month</th>
-                <th>Amount</th>
-            </tr>
+        <tr class="table-info">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Month</th>
+            <th>Amount</th>
+        </tr>
         @foreach (var stud in Model)
         {
             <tr>
@@ -29,7 +35,7 @@
             </tr>
         }
     </table>
-    <a type="submit" class="btn btn-primary form-control" asp-area="Admins" asp-controller="Fee" asp-action="Alert">Send Alert</a>
+    <a type="submit" class="btn btn-primary form-control" style="width:20%;" asp-area="Admins" asp-controller="Fee" asp-action="Alert">Send Alert</a>
 </body>
 </html>
 
