@@ -102,8 +102,8 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 _unitOfWork.SPCall.List<StudentDetailsModel>(SD.Stud_Reg, parameters);
 
                 _unitOfWork.Save();
-                string emailbody = GetBody("welcome", FirstName, Email, Password);
-                EmailConfig.SendMail(Email, "Welcome", emailbody);
+                string emailbody = GetBody("welcome", student.FirstName, student.Email, student.Password);
+                EmailConfig.SendMail(student.Email, "Welcome", emailbody);
 
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 
@@ -128,8 +128,8 @@ namespace SchoolManagement.Areas.Admin.Controllers
             {
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
                 _unitOfWork.Save();
-                string emailbody = GetBody("welcome", FirstName, Email, Password);
-                EmailConfig.SendMail(Email, "Welcome", emailbody);
+                string emailbody = GetBody("welcome", teacher.FirstName, teacher.Email, teacher.Password);
+                EmailConfig.SendMail(teacher.Email, "Welcome", emailbody);
 
                 return RedirectToAction("Index", "Admin", new { area = "Admin" });
 
@@ -158,23 +158,31 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult EditAdmin(UserModel usermodel)
         {
-           
-            if(ModelState.IsValid)
+            string claimvalue = User.FindFirst("id").Value;
+            int UserId = Convert.ToInt32(claimvalue);
+            var parameters = new DynamicParameters();
+            parameters.Add("inUserId", UserId);
+            parameters.Add("stFirstName", usermodel.FirstName);
+            parameters.Add("stLastName", usermodel.LastName);
+            parameters.Add("stGender", usermodel.Gender);
+            parameters.Add("dtDOB", usermodel.DOB);
+            parameters.Add("stEmail", usermodel.Email);
+            parameters.Add("stPassword", usermodel.Password);
+            if (ModelState.IsValid)
             {
-               _unitOfWork.UserModel.Update(usermodel);
+                _unitOfWork.SPCall.List<ClassModel>(SD.EditAdminDetails, parameters);
                 _unitOfWork.Save();
             }
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
             
         }
 
-
         #region GetEmailBody
 
-        public string GetBody(string type, string Name=" ", string UserId=" " ,string Password=" ", string Notice = " " , string Month=" ", string Amount= " ", string Status=" " , string Assignment= " ")
+        public string GetBody(string type, string Name = " ", string UserId = " ", string Password = " ", string Notice = " ", string Month = " ", string Amount = " ", string Status = " ", string Assignment = " ")
         {
             string str = null;
-            
+
 
             switch (type)
             {
@@ -184,6 +192,73 @@ namespace SchoolManagement.Areas.Admin.Controllers
                         str = reader.ReadToEnd();
                     }
 
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{UserId}", UserId);
+                    str = str.Replace("{Password}", Password);
+
+
+                    return str;
+
+                    break;
+
+                case "notice":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/Notice.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Notice}", Notice);
+
+
+                    return str;
+                    break;
+
+                case "feepayment":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/FeePayment.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Month}", Month);
+                    str = str.Replace("{Amount}", Amount);
+                    str = str.Replace("{Status}", Status);
+
+                    return str;
+                    break;
+
+                case "feereminder":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/FeeReminder.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Month}", Month);
+
+                    return str;
+                    break;
+
+                case "assignment":
+                    using (StreamReader reader = new StreamReader(Path.Combine(_host.WebRootPath, "EmailTemplates/Assignment.html")))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("{Name}", Name);
+                    str = str.Replace("{Assignment}", Assignment);
+
+                    return str;
+                    break;
+
+
+            }
+            return str;
+
+        }
+
+        #endregion
 
     }
 
