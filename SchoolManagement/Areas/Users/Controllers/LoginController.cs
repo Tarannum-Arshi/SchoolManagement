@@ -23,6 +23,11 @@ namespace SchoolManagement.Areas.Users.Controllers
         {
             return View();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Login", new { area = "Users" });
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

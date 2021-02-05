@@ -9,7 +9,11 @@
 <head>
     <link rel="stylesheet" href="~/css/Index.css" />
 </head>
-<body> 
+<body>
+
+    <div class="col-2 text-right" style="float:right">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
+    </div>
     <div class="tab">
         <h3 class="btn-block">Welcome @User.FindFirst("names").Value  </h3>
         <a class="tablinks" asp-area="Admin" asp-controller="Admin" asp-action="TeacherRegister">Add New Teacher</a>
