@@ -27,10 +27,10 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         public IActionResult Leave()
         {
 
-             TeacherModel teacher = new TeacherModel();
+            TeacherModel teacher = new TeacherModel();
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
-            teacher = _unitOfWork.TeacherModel.Get(UserId);
+            teacher = _unitOfWork.TeacherModel.GetFirstOrDefault(a => a.UserId == UserId);
 
             return View(teacher);
         }
@@ -43,7 +43,7 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             TeacherModel teachers = new TeacherModel();
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
-            teachers = _unitOfWork.TeacherModel.Get(UserId);
+            teachers = _unitOfWork.TeacherModel.GetFirstOrDefault(a => a.UserId == UserId);
             var parameters = new DynamicParameters();
             parameters.Add("inTeacherId", teachers.TeacherId);
             parameters.Add("inLeaveDays", teacher.LeaveDays);

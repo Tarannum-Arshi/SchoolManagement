@@ -7,7 +7,7 @@ using SchoolManagement.Models.ViewModels;
 
 namespace SchoolManagement.DataAccess.Repository.IRepository
 {
-    public interface IStudentRepository : IRepository<StudentDetailsModel>
+    public interface IStudentRepository : IRepository<StudentModel>
     {
         
     }
