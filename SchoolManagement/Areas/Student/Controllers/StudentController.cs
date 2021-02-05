@@ -132,9 +132,9 @@ namespace SchoolManagement.Areas.Student.Controllers
             //return View();
 
         }
-        
 
 
+        #region payment
 
         [HttpPost]
         public ActionResult CreateOrder(Payments _requestData)
@@ -252,17 +252,7 @@ namespace SchoolManagement.Areas.Student.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
+        #endregion
 
 
 
