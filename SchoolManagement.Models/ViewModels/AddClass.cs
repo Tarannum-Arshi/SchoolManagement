@@ -12,9 +12,6 @@ namespace SchoolManagement.Models.ViewModels
         public int AddClassId { get; set; }
 
         [Required]
-        public int TeacherId { get; set; }
-
-        [Required]
         public int UserId { get; set; }
 
         [Required]

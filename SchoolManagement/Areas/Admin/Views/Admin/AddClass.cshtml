@@ -1,4 +1,5 @@
-﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+﻿
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var title = "Insert Class Details";
@@ -33,7 +34,7 @@
                     TeacherName
                 </div>
                 <div class="col-8">
-                    @Html.DropDownList("UserModel" , new SelectList(ViewBag.data, "UserId", "Name"))
+                    @Html.DropDownList("UserId", new SelectList(ViewBag.Data, "UserId", "Name"))
                 </div>
             </div>
            

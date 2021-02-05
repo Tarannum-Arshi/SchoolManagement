@@ -24,68 +24,76 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             return View();
         }
-        public IActionResult StudentSearch()
-        { 
-           
+        public IActionResult StudentSearch1()
+        {
             return View();
         }
-        public IActionResult EditStudent(int? id)
+        public IActionResult TeacherSearch1()
         {
-            UserModel usermodel = new UserModel();
-
-
-            string claimvalue = User.FindFirst("id").Value;
-            int UserId = Convert.ToInt32(claimvalue);
-
-            usermodel = _unitOfWork.UserModel.Get(UserId);
-            if (usermodel == null)
+            return View();
+        }
+        public IActionResult EditStudent(int id)
+        {
+            StudentDetails student = new StudentDetails();
+            if (student == null)
             {
                 return NotFound();
             }
-            return View();
+            return View(student);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult StudentSearch(string FirstName)
+        public IActionResult EditTeacher(int id)
         {
-           
-            var parameters = new DynamicParameters();
-            parameters.Add("stFirstName", FirstName);
-            if (ModelState.IsValid)
+            TeacherDetails teacher = new TeacherDetails();
+            if(teacher==null)
             {
-                var obj=_unitOfWork.SPCall.List<StudentDetails>(SD.GetStudentDetails, parameters);
-
-                _unitOfWork.Save();
-                return View(obj);
-                //Vaibhav
+                return NotFound();
             }
-
-            return View();
+            return View(teacher);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public IActionResult EditStudent(string FirstName, string LastName, string Gender, DateTime DOB, string Email, string Password, int Class)
+        public IActionResult EditStudent(int id, StudentDetails studentuser)
         {
-            UserModel usermodel = new UserModel()
-            {
-                FirstName = FirstName,
-                LastName = LastName,
-                Gender = Gender,
-                DOB = DOB,
-                Email = Email,
-                Password = Password
-            };
             var parameters = new DynamicParameters();
-            parameters.Add("stEmail", Email);
-            StudentModel studentmodel = new StudentModel()
-            {
-                Class = Class
-            };
-            return View(_unitOfWork.SPCall.List<StudentModel>(SD.EditStudentDetails, parameters));
-            return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            parameters.Add("inUserId", id);
+            parameters.Add("stFirstName", studentuser.FirstName);
+            parameters.Add("stLastName", studentuser.LastName);
+            parameters.Add("stGender", studentuser.Gender);
+            parameters.Add("dtDOB", studentuser.DOB);
+            parameters.Add("stEmail", studentuser.Email);
+            parameters.Add("inClass", studentuser.Class);
+            _unitOfWork.SPCall.List<StudentDetails>(SD.EditStudentDetails, parameters);
+            return RedirectToAction("StudentSearch1", "Edit", new { area = "Admin" });
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditTeacher(int id, TeacherDetails teacheruser)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("inUserId", id);
+            parameters.Add("stFirstName", teacheruser.FirstName);
+            parameters.Add("stLastName", teacheruser.LastName);
+            parameters.Add("stGender", teacheruser.Gender);
+            parameters.Add("dtDOB", teacheruser.DOB);
+            parameters.Add("stEmail", teacheruser.Email);
+            parameters.Add("inSalary", teacheruser.Salary);
+            _unitOfWork.SPCall.List<TeacherDetails>(SD.EditTeacherDetails, parameters);
+            return RedirectToAction("TeacherSearch1", "Edit", new { area = "Admin" });
+        }
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
+            _unitOfWork.Save();
+            return Json(new { data = obj });
+        }
+        public IActionResult GetAll1()
+        {
+            var obj1 = _unitOfWork.SPCall.List<TeacherUserDetails>(SD.GetTeacherDetails, null);
+            _unitOfWork.Save();
+            return Json(new { data = obj1 });
+        }
+        #endregion
     }
 }

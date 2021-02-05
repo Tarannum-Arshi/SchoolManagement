@@ -141,14 +141,14 @@ namespace SchoolManagement.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddClass(AddClass add)
+        public IActionResult AddClass(int Class,int FeeCharge,int UserId)
         {
-            
+            TeacherModel teacher = new TeacherModel();
+            teacher = _unitOfWork.TeacherModel.Get(UserId);
             var parameters = new DynamicParameters();
-            parameters.Add("TeacherId", add.TeacherId);
-            parameters.Add("UserId", add.UserId);
-            parameters.Add("Class", add.Class);
-            parameters.Add("FeeCharge", add.FeeCharge);
+            parameters.Add("inTeacherId", teacher.TeacherId);
+            parameters.Add("inClass", Class);
+            parameters.Add("inFeeCharge", FeeCharge);
             _unitOfWork.SPCall.List<ClassModel>(SD.InsertClass, parameters);
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
         }

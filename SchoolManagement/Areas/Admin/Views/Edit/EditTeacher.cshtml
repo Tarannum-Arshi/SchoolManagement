@@ -1,14 +1,15 @@
-﻿@model SchoolManagement.Models.ViewModels.TeacherUserDetails
+﻿@model SchoolManagement.Models.ViewModels.TeacherDetails
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var title = "Register New Teacher";
+    var title = "Edit Teacher";
 }
 
 
 <form method="post">
     <div class="row p-3 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="col-12 border-bottom">
             <h2 class="text-primary">@title</h2>
         </div>
@@ -20,6 +21,7 @@
                 <div class="col-8">
                     <input asp-for="FirstName" class="form-control" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
+
                 </div>
             </div>
             <div class="form-group row">
@@ -60,15 +62,6 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    Password
-                </div>
-                <div class="col-8">
-                    <input asp-for="Password" type="password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
                     Salary
                 </div>
                 <div class="col-8">
@@ -76,13 +69,14 @@
                     <span asp-validation-for="Salary" class="text-danger"></span>
                 </div>
             </div>
-           
             <div class="form-group row">
                 <div class="col-8 offset-4">
                     <div class="row">
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary form-control"> Register Teacher</button>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary form-control"> Edit</button>
+
                         </div>
+
 
                     </div>
                 </div>
@@ -94,5 +88,3 @@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }
-
-
