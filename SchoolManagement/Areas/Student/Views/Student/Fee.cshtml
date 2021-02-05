@@ -1,12 +1,18 @@
-﻿@model IEnumerable<SchoolManagement.Models.ViewModels.Fee>
+﻿@model SchoolManagement.Models.ViewModels.Payments
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
     ViewData["Title"] = "Fee Payment";
 }
 
-@foreach (var blog in Model)
-{
-<div class="text-center">
-        <h2 class="text-primary" > Your due fees= @blog.FeeCharge </h2>
-</div>
-}
+
+    
+    
+    <div class="text-center">
+        <h2 class="text-primary"> Your due fees= @Model.amount </h2>
+        <a type="submit" class="btn btn-primary form-control" style="width:20%;" asp-area="Student" asp-controller="Student" asp-action="RazorpayPayment">Razorpay</a>
+
+    </div>
