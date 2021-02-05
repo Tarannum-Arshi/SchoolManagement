@@ -38,7 +38,7 @@ namespace SchoolManagement
                    options.LoginPath = new PathString("/Users/Login/Login");
                    options.AccessDeniedPath = new PathString("/Users/Login/Login");
                });
-            services.Configure<Keys>(Configuration.GetSection("Razorpay"));
+            services.Configure<Keys>(Configuration);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             //To access unit of work we have to register and then unit of work is add as a part of dependency enjection
             services.AddControllersWithViews();
@@ -63,8 +63,8 @@ namespace SchoolManagement
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            var SecretKey =  Configuration.GetSection("Razorpay")["SecretKey"];
-            var PublishKey = Configuration.GetSection("Razorpay")["PublishKey"];
+           // var SecretKey =  Configuration.GetSection("Razorpay")["SecretKey"];
+           // var PublishKey = Configuration.GetSection("Razorpay")["PublishKey"];
 
 
             app.UseEndpoints(endpoints =>

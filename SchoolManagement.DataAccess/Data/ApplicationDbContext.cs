@@ -26,6 +26,8 @@ namespace SchoolManagement.DataAccess.Data
         public DbSet<Fee> Fee { get; set; }
         public DbSet<DuesFee> DuesFee { get; set; }
 
+        public DbSet<Payments> Payments { get; set; }
+
 
     }
 }
