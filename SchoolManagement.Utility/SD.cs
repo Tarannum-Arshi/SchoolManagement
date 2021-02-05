@@ -16,6 +16,11 @@ namespace SchoolManagement.Utility
         public const string GetStudentDetails = "getStudent";
         public const string ApplyForLeave = "updateTeacherLeave";
 
+        public const string EditAdminDetails = "updateAdmin";
+
+
+
+        
 
         public const string FeeDetails = "getNameFeeEmail";
 
@@ -23,6 +28,7 @@ namespace SchoolManagement.Utility
 
         //insertPayments
 
+       
 
 
     }
