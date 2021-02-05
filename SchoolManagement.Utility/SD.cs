@@ -15,9 +15,9 @@ namespace SchoolManagement.Utility
         public const string EditStudentDetails = "updateStudents";
         public const string GetStudentDetails = "getStudent";
         public const string ApplyForLeave = "updateTeacherLeave";
-
-
-
+        public const string EditAdminDetails = "updateAdmin";
+        public const string GetTeacherDetails = "getTeacher";
+        public const string EditTeacherDetails = "updateTeachers";
 
     }
 }

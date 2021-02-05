@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SchoolManagement.Models.ViewModels
 {
-    public class TeacherUserDetails
+    public class TeacherDetails
     {
         [Key]
-        public int TeacherUserId { get; set; }
-
+        public int TeacherDetailsId {get; set; }
         [Required]
         public int UserId { get; set; }
-
+        
         [Required]
         [MaxLength(40)]
         public string FirstName { get; set; }
@@ -25,6 +25,7 @@ namespace SchoolManagement.Models.ViewModels
         [MaxLength(4)]
         public string Gender { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
@@ -34,12 +35,9 @@ namespace SchoolManagement.Models.ViewModels
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(20)]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Required]
+        
         [Range(50000, 100000)]
         public int Salary { get; set; }
+        
     }
 }

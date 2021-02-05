@@ -5,9 +5,9 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    dataTable = $('#tblStudent').DataTable({
+    dataTable = $('#tblTeacher').DataTable({
         "ajax": {
-            "url":"/Admin/Edit/GetAll"
+            "url":"/Admin/Edit/GetAll1"
         },
         "columns": [
             { "data": "userId" },
@@ -16,13 +16,13 @@ function loadDataTable() {
             { "data": "gender"},
             { "data": "dob"},
             { "data": "email" },
-            { "data": "class" },
+            {"data":"salary"},
             {
                 "data": "userId",
                 "render": function (data) {
                     return `
                             <div class="text-center">
-                                <a href="/Admin/Edit/EditStudent/${data}" class=" btn btn-success text-white" style="cursor:pointer">                
+                                <a href="/Admin/Edit/EditTeacher/${data}" class=" btn btn-success text-white" style="cursor:pointer">
                                     EDIT
                                 </a>
                             </div>
