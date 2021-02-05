@@ -19,7 +19,7 @@
 <body>
 
     <div class="container login-container">
-        <h1>Creat an Order | Razorpay Payment Gateway Integration</h1>
+        <h1>Fee Payment</h1>
         <div class="login-card">
             <div class="login-card-body">
                 @using (Html.BeginForm("CreateOrder", "Student", FormMethod.Post))
@@ -46,7 +46,16 @@
                         <label for="amount">Amount (INR)</label>
                         @Html.TextBoxFor(x => x.amount, new { @class = "form-control" })
                     </div>
+                    @if (ViewBag.FeeAmount == 0)
+                    {
+                     <div class="row">
+                             <label >Already Paid</label>
+                     </div>
+                    }
+                    else
+                    {
                     <button type="submit" class="btn btn-primary">Submit</button>}
+                    }
             </div>
         </div>
     </div>
