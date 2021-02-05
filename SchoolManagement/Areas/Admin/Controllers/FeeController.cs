@@ -29,6 +29,18 @@ namespace SchoolManagement.Areas.Admin.Controllers
             return View(allfee);
         }
 
+        public IActionResult Alert()
+        {
+            
+            var allfee = _unitOfWork.SPCall.List<DuesFee>(SD.GetAllDueFee, null);
+            foreach (var fee in allfee)
+            {
+                string emailbody = GetBody("feereminder", fee.Name, fee.Email, "" , "" , "",fee.Fee.ToString());
+                EmailConfig.SendMail(fee.Email, "Fee Reminder", emailbody);
+            }
+            return RedirectToAction("Index", "Fee", new { area = "Admin" });
+        }
+
         #region GetEmailBody
 
         public string GetBody(string type, string Name = " ", string UserId = " ", string Password = " ", string Notice = " ", string Month = " ", string Amount = " ", string Status = " ", string Assignment = " ")
@@ -87,7 +99,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     }
 
                     str = str.Replace("{Name}", Name);
-                    str = str.Replace("{Month}", Month);
+                    str = str.Replace("{Amount}", Amount);
 
                     return str;
                     break;

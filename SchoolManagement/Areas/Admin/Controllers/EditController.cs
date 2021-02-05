@@ -80,11 +80,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
             };
             var parameters = new DynamicParameters();
             parameters.Add("stEmail", Email);
-            StudentDetailsModel studentmodel = new StudentDetailsModel()
+            StudentModel studentmodel = new StudentModel()
             {
                 Class = Class
             };
-            return View(_unitOfWork.SPCall.List<StudentDetailsModel>(SD.EditStudentDetails, parameters));
+            return View(_unitOfWork.SPCall.List<StudentModel>(SD.EditStudentDetails, parameters));
             return RedirectToAction("Index", "Admin", new { area = "Admin" });
         }
     }
