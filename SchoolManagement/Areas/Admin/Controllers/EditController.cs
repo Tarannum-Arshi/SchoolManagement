@@ -32,7 +32,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         {
             return View();
         }
-        public IActionResult EditStudent(int id)
+        public IActionResult EditStudent()
         {
             StudentDetails student = new StudentDetails();
             if (student == null)
@@ -41,7 +41,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(student);
         }
-        public IActionResult EditTeacher(int id)
+        public IActionResult EditTeacher()
         {
             TeacherDetails teacher = new TeacherDetails();
             if(teacher==null)

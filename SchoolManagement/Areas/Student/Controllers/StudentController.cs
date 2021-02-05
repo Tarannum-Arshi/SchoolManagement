@@ -80,6 +80,10 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
+        public IActionResult TimeTable()
+        {
+            return View();
+        }
 
         public IActionResult RazorpayPayment()
         {
