@@ -19,16 +19,6 @@ namespace SchoolManagement.Utility
         public const string PendingLeaves = "getPendingLeave";
         public const string ApprovedLeaves = "updateLeaveStatus";
         public const string GetTeacherName = "getTeacherName";
-
-
-
-
-
-
-
-
-
-
         public const string EditTeacherDetails = "updateTeachers";
         public const string GetTeacherDetails = "getTeacher";
         public const string FeeDetails = "getNameFeeEmail";
