@@ -14,6 +14,7 @@ namespace SchoolManagement.Models.ViewModels
 
         [Required]
         public string Name { get; set; }
+        public string Email { get; set; }
 
         [Required]
         public int TeacherId { get; set; }
