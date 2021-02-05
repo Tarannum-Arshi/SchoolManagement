@@ -127,7 +127,7 @@ namespace SchoolManagement.Areas.Student.Controllers
             paymentParam.Add("inAmount", payment.amount);
             paymentParam.Add("inUserId", payment.UserId);
             _unitOfWork.SPCall.List<StudentModel>(SD.SaveFeeDetails, paymentParam);
-
+            ViewBag.FeeAmount = payment.amount;
             _unitOfWork.Save();
 
             return View(payment);
@@ -135,9 +135,9 @@ namespace SchoolManagement.Areas.Student.Controllers
             //return View();
 
         }
-        
 
 
+        #region payment
 
         [HttpPost]
         public ActionResult CreateOrder(Payments _requestData)
@@ -236,6 +236,7 @@ namespace SchoolManagement.Areas.Student.Controllers
                 // Create these action method
                 // string emailbody = GetBody("feepayment", FirstName, Email, Password);
                 //EmailConfig.SendMail(Email, "Welcome", emailbody);
+                _unitOfWork.SPCall.List<FeeDetails>(SD.UpdateFeeDate, paymentParam);
                 return RedirectToAction("Success");
             }
             else
@@ -255,17 +256,7 @@ namespace SchoolManagement.Areas.Student.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
+        #endregion
 
 
 
