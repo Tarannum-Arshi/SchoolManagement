@@ -76,7 +76,10 @@ namespace SchoolManagement.Areas.Student.Controllers
             
         }
 
-
+        public IActionResult Holiday()
+        {
+            return View();
+        }
 
         public IActionResult RazorpayPayment()
         {

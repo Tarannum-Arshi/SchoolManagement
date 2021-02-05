@@ -18,17 +18,9 @@ namespace SchoolManagement.Utility
         public const string EditAdminDetails = "updateAdmin";
         public const string PendingLeaves = "getPendingLeave";
         public const string ApprovedLeaves = "updateLeaveStatus";
-
-
-
-        public const string EditAdminDetails = "updateAdmin";
-
-
-
-        
-
+        public const string EditTeacherDetails = "updateTeachers";
         public const string FeeDetails = "getNameFeeEmail";
-
+        public const string GetTeacherDetails = "getTeacher";
         public const string SaveFeeDetails = "insertPayments";
 
         //insertPayments
