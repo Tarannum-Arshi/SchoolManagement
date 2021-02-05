@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SchoolManagement.Models.ViewModels
 {
-    public class StudentDetailsModel
+    public class StudentModel
     {
         [Key]
         public int StudentId { get; set; }

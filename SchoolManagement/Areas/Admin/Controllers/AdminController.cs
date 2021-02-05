@@ -99,7 +99,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
           
             if (ModelState.IsValid)
             {
-                _unitOfWork.SPCall.List<StudentDetailsModel>(SD.Stud_Reg, parameters);
+                _unitOfWork.SPCall.List<StudentModel>(SD.Stud_Reg, parameters);
 
                 _unitOfWork.Save();
                 string emailbody = GetBody("welcome", student.FirstName, student.Email, student.Password);
