@@ -80,7 +80,42 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
-
+        public IActionResult TimeTable()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine1()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine2()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine3()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine4()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine5()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine6()
+        {
+            return View();
+        }
+        public IActionResult TimeTableRoutine7()
+        {
+            return View();
+        }
         public IActionResult RazorpayPayment()
         {
             string claimvalue = User.FindFirst("id").Value;

@@ -23,6 +23,15 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         {
             return View();
         }
+        public IActionResult TimeTable()
+        {
+            return View();
+        }
+
+        public IActionResult Routine()
+        {
+            return View();
+        }
 
         public IActionResult Leave()
         {

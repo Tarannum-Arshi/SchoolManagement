@@ -22,7 +22,7 @@ namespace SchoolManagement.Models.ViewModels
         public UserModel UserModel { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime LastPaymentMonth { get; set; }
 
     

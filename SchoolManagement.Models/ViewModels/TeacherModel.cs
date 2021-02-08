@@ -29,7 +29,7 @@ namespace SchoolManagement.Models.ViewModels
         public int LeaveDays { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
        
         [MaxLength(4)]
