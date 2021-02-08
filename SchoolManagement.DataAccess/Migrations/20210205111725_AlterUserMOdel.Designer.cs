@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.DataAccess.Data;
 
 namespace SchoolManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210205111725_AlterUserMOdel")]
+    partial class AlterUserMOdel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -356,46 +358,6 @@ namespace SchoolManagement.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("StudentModel");
-                });
-
-            modelBuilder.Entity("SchoolManagement.Models.ViewModels.Subject", b =>
-                {
-                    b.Property<int>("SubjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Class")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Computer")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<int>("English")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<int>("Hindi")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Maths")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Science")
-                        .HasColumnType("int");
-
-                    b.HasKey("SubjectId");
-
-                    b.ToTable("Subject");
                 });
 
             modelBuilder.Entity("SchoolManagement.Models.ViewModels.TeacherModel", b =>
