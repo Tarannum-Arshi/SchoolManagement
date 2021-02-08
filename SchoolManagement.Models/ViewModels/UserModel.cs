@@ -37,5 +37,7 @@ namespace SchoolManagement.Models.ViewModels
 
         [MaxLength(4)]
         public string Role { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

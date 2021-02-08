@@ -76,6 +76,37 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                string webRootPath = _host.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                if(files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    if(usermodel.ImageUrl != null)
+                    {
+                        var imagePath = Path.Combine(webRootPath, usermodel.ImageUrl.TrimStart('\\'));
+                        if(System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStreams);
+                    }
+                    usermodel.ImageUrl = @"\images" + fileName + extension;
+                }
+                else
+                {
+                    if(usermodel.UserId !=0)
+                    {
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(usermodel.UserId);
+                        usermodel.ImageUrl = objFromDb.ImageUrl;
+                    }
+                }
+
                 _unitOfWork.UserModel.Add(usermodel);
 
                 _unitOfWork.Save();
@@ -99,6 +130,37 @@ namespace SchoolManagement.Areas.Admin.Controllers
           
             if (ModelState.IsValid)
             {
+                string webRootPath = _host.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    if (student.ImageUrl != null)
+                    {
+                        var imagePath = Path.Combine(webRootPath, student.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStreams);
+                    }
+                    student.ImageUrl = @"\images" + fileName + extension;
+                }
+                else
+                {
+                    if (student.UserId != 0)
+                    {
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(student.UserId);
+                        student.ImageUrl = objFromDb.ImageUrl;
+                    }
+                }
+
                 _unitOfWork.SPCall.List<StudentModel>(SD.Stud_Reg, parameters);
 
                 _unitOfWork.Save();
@@ -126,6 +188,36 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("inSalary", teacher.Salary);
             if (ModelState.IsValid)
             {
+                string webRootPath = _host.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    if (teacher.ImageUrl != null)
+                    {
+                        var imagePath = Path.Combine(webRootPath, teacher.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStreams);
+                    }
+                    teacher.ImageUrl = @"\images" + fileName + extension;
+                }
+                else
+                {
+                    if (teacher.UserId != 0)
+                    {
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(teacher.UserId);
+                        teacher.ImageUrl = objFromDb.ImageUrl;
+                    }
+                }
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
                 _unitOfWork.Save();
                 string emailbody = GetBody("welcome", teacher.FirstName, teacher.Email, teacher.Password);

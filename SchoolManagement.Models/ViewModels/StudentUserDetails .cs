@@ -41,6 +41,7 @@ namespace SchoolManagement.Models.ViewModels
 
         [Required]
         public int Class { get; set; }
-        
+
+        public string ImageUrl { get; set; }
     }
 }

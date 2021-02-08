@@ -22,7 +22,6 @@ namespace SchoolManagement.Utility
         public const string EditTeacherDetails = "updateTeachers";
         public const string GetTeacherDetails = "getTeacher";
         public const string FeeDetails = "getNameFeeEmail";
-        public const string GetTeacherDetails = "getTeacher";
         public const string SaveFeeDetails = "insertPayments";
         public const string UpdateFeeDate = "updateStudentFeeDate";
         
