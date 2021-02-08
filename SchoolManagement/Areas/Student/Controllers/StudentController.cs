@@ -37,8 +37,8 @@ namespace SchoolManagement.Areas.Student.Controllers
         }
         public IActionResult Result()
         {
-            Subject subject = new Subject();
-            return View(subject);
+            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
+            return View(obj);
         }
         public IActionResult Fee()
         {
@@ -176,14 +176,22 @@ namespace SchoolManagement.Areas.Student.Controllers
 
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Result(Subject subject)
-        //{
-        //    var parameters = new DynamicParameters();
-        //    parameters.Add("")
-        //    var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, parameters);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Result(Subject subject)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("firstName", subject.FirstName);
+            parameters.Add("email", subject.Email);
+            parameters.Add("class", subject.Class);
+            parameters.Add("maths", subject.Maths);
+            parameters.Add("science", subject.Science);
+            parameters.Add("english", subject.English);
+            parameters.Add("hindi", subject.Hindi);
+            parameters.Add("computer", subject.Computer);
+            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, parameters);
+            return View(obj);
+        }
 
         #region payment
 
