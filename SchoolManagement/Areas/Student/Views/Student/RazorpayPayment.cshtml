@@ -1,4 +1,6 @@
 ﻿@*Create this model*@
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
 @model SchoolManagement.Models.ViewModels.Payments
 
 @{
@@ -17,7 +19,13 @@
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="col-2 text-right" style="float:right">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
 
+    </div>
+    <div class="col-2 text-right" style="float:right">
+        <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+    </div>
     <div class="container login-container">
         <h1>Fee Payment</h1>
         <div class="login-card">
@@ -48,14 +56,14 @@
                     </div>
                     @if (ViewBag.FeeAmount == 0)
                     {
-                     <div class="row">
-                             <label >Already Paid</label>
-                     </div>
+                        <div class="row">
+                            <label>Already Paid</label>
+                        </div>
                     }
                     else
                     {
-                    <button type="submit" class="btn btn-primary">Submit</button>}
-                    }
+                        <button type="submit" class="btn btn-primary">Submit</button>}
+                }
             </div>
         </div>
     </div>

@@ -5,28 +5,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h4 class="display-4">
-        Welcome @User.FindFirst("names").Value
-    </h4>
-    <div class="col-4 text-center" style="float:left">
-        <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="RazorpayPayment">Fee Payment</a>
-    </div>
-    <div class="col-4 text-center" style="float:left">
-        <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="Holiday">Check Holiday List</a>
-    </div>
-    <div class="col-4 text-center" style="float:left">
-        <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="TimeTable">Check TimeTable</a>
-    </div>
-    <div class="col-4 text-center" style="float:left">
-        <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="TimeTable">Check Result</a>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
     <div class="col-2 text-right" style="float:right">
         <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
-    </div>
 
-</div>
-<br/>
-<div>
-    <br/>
-</div>
+    </div>
+    <div class="col-2 text-right" style="float:right">
+        <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+    </div>
+    <div class="tab">
+        <h3 class="btn-block"> Welcome @User.FindFirst("names").Value </h3>
+        <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="RazorpayPayment">Fee Payment</a>
+        <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="Holiday">Check Holiday List</a>
+        <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="TimeTable">Check TimeTable</a>
+        <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="TimeTable">Check Result</a>
+
+    </div>
+</body>
+</html>

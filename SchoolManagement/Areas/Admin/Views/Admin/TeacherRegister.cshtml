@@ -5,7 +5,9 @@
     var title = "Register New Teacher";
 }
 
-
+<div class="col-2 text-right" style="float:right">
+    <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+</div>
 <form method="post" enctype="multipart/form-data">
     <div class="row p-3 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -105,7 +107,7 @@
     <script>
 
         function validateInput() {
-            if (document.getElementsById("uploadBox").value = "") {
+            if (document.getElementsById("uploadBox").value == "") {
                 swal("Error", "Please select an image", "error");
                 return false;
             }

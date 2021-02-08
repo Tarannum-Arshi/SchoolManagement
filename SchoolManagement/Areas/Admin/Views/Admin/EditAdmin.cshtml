@@ -5,8 +5,10 @@
     var title = "Edit Admin";
 }
 
-
-<form method="post">
+<div class="col-2 text-right" style="float:right">
+    <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+</div>
+<form method="post" enctype="multipart/form-data">
     <div class="row p-3 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -70,14 +72,21 @@
                 </div>
             </div>
             <div class="form-group row">
+                <div class="form-group row">
+                    <div class="col-4">
+                        Images
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="col-8 offset-4">
                     <div class="row">
                         <div class="row">
-                            <button type="submit" class="btn btn-primary form-control"> Edit</button>
-
+                            <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control"> Edit</button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -87,4 +96,14 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    <script>
+
+        function validateInput() {
+            if (document.getElementsById("uploadBox").value == "") {
+                swal("Error", "Please select an image", "error");
+                return false;
+            }
+            return true;
+        }
+    </script>
 }

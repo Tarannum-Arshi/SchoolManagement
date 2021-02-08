@@ -44,7 +44,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(student);
         }
-        public IActionResult EditTeacher()
+        public IActionResult EditTeacher(int id)
         {
             TeacherDetails teacher = new TeacherDetails();
             if(teacher==null)
@@ -87,7 +87,8 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    studentuser.ImageUrl = @"\images" + fileName + extension;
+                    studentuser.ImageUrl =fileName + extension;
+                    parameters.Add("stImageUrl", studentuser.ImageUrl);
                 }
                 else
                 {
@@ -136,7 +137,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    teacheruser.ImageUrl = @"\images" + fileName + extension;
+                    teacheruser.ImageUrl =fileName + extension;
+
+                    parameters.Add("stImageUrl", teacheruser.ImageUrl);
                 }
                 else
                 {

@@ -36,7 +36,6 @@ namespace SchoolManagement.Models.ViewModels
 
         [Required]
         
-        [Range(50000, 100000)]
         public int Salary { get; set; }
         public string ImageUrl { get; set; }
 
