@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.DataAccess.Data;
 
 namespace SchoolManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210208082330_addSubjectTable")]
+    partial class addSubjectTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -369,6 +371,7 @@ namespace SchoolManagement.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Computer")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -377,6 +380,7 @@ namespace SchoolManagement.DataAccess.Migrations
                         .HasColumnType("nvarchar(60)");
 
                     b.Property<int>("English")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -385,12 +389,15 @@ namespace SchoolManagement.DataAccess.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("Hindi")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.Property<int>("Maths")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.Property<int>("Science")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
                     b.HasKey("SubjectId");
@@ -458,9 +465,6 @@ namespace SchoolManagement.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()

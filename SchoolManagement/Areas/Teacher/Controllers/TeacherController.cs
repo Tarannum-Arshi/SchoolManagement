@@ -32,6 +32,35 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         {
             return View();
         }
+        public IActionResult Result()
+        {
+            return View();
+        }
+        public IActionResult ResultSearch()
+        {
+            return View();
+        }
+        public IActionResult Message()
+        {
+            return View();
+        }
+        public IActionResult UploadResult()
+        {
+            //StudentUserDetails student = new StudentUserDetails();
+            //return View(student);
+            var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
+            _unitOfWork.Save();
+            return View(obj);
+        }
+        public IActionResult EditResult()
+        {
+            Subject subject = new Subject();
+            if(subject==null)
+            {
+                return NotFound();
+            }
+            return View(subject);
+        }
 
         public IActionResult Leave()
         {
@@ -64,8 +93,47 @@ namespace SchoolManagement.Areas.Teacher.Controllers
                 return RedirectToAction("Index","Teacher",new { area = "Teacher" });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Result(Subject subject)
+        {
+            if(ModelState.IsValid)
+            {
+                _unitOfWork.Subject.Add(subject);
+                _unitOfWork.Save();
+                return RedirectToAction("Message", "Teacher", new { area="Teacher"});
+            }
+            return View(subject);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditResult(int id, Subject subject)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("subjectId", id);
+            parameters.Add("firstName", subject.FirstName);
+            parameters.Add("email", subject.Email);
+            parameters.Add("class", subject.Class);
+            parameters.Add("maths", subject.Maths);
+            parameters.Add("science", subject.Science);
+            parameters.Add("english", subject.English);
+            parameters.Add("hindi", subject.English);
+            parameters.Add("computer", subject.Computer);
+            _unitOfWork.SPCall.List<Subject>(SD.EditResult, parameters);
+            return RedirectToAction("ResultSearch", "Teacher", new { area = "Teacher" });
+        }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
+            _unitOfWork.Save();
+            return Json(new { data = obj });
+        }
+        #endregion
     }
-        
+
 
 }
 

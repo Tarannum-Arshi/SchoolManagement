@@ -35,6 +35,11 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
+        public IActionResult Result()
+        {
+            Subject subject = new Subject();
+            return View(subject);
+        }
         public IActionResult Fee()
         {
             string claimvalue = User.FindFirst("id").Value;
@@ -171,6 +176,14 @@ namespace SchoolManagement.Areas.Student.Controllers
 
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Result(Subject subject)
+        //{
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("")
+        //    var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, parameters);
+        //}
 
         #region payment
 

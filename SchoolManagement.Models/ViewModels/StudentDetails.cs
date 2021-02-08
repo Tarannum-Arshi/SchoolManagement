@@ -35,6 +35,7 @@ namespace SchoolManagement.Models.ViewModels
         public string Email { get; set; }
 
         [Required]
+        [Range(1,7)]
         public int Class { get; set; }
         public string ImageUrl { get; set; }
 

@@ -15,7 +15,7 @@ namespace SchoolManagement.Models.ViewModels
         public int UserId { get; set; }
 
         [Required]
-        [Range(1,12)]
+        [Range(1,7)]
         public int Class { get; set; }
         
         
