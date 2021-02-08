@@ -16,6 +16,7 @@ function loadDataTable() {
             { "data": "gender"},
             { "data": "dob"},
             { "data": "email" },
+            {"data":"imageUrl"},
             {"data":"salary"},
             {
                 "data": "userId",

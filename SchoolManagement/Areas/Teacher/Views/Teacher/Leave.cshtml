@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="~/css/Index.css" />
 </head>
 <body>
+    <div class="col-2 text-right" style="float:right">
+        <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+    </div>
     <div class="text-sm-right">
         <h2 class="btn-block">Welcome @User.FindFirst("names").Value  </h2>
     </div>
@@ -21,7 +24,7 @@
     <div class="text-md-left">
         <h5 class="btn-block">Remaining Leaves @Model.RemainingLeave </h5>
     </div>
-<form method="post">
+    <form method="post">
         <div class="row p-3 border">
             <div class="col-8 pt-4">
                 <div class="form-group row">
@@ -49,6 +52,6 @@
                 </div>
             </div>
         </div>
-</form>
+    </form>
 </body>
 </html>

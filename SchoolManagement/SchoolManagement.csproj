@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Home\**" />
+    <Content Remove="Areas\Home\**" />
+    <EmbeddedResource Remove="Areas\Home\**" />
+    <None Remove="Areas\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DocuSign.eSign.dll" Version="5.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />

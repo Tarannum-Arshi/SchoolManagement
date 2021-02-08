@@ -96,7 +96,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    usermodel.ImageUrl = @"\images" + fileName + extension;
+                    usermodel.ImageUrl =fileName + extension;
                 }
                 else
                 {
@@ -150,7 +150,10 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    student.ImageUrl = @"\images" + fileName + extension;
+                    student.ImageUrl =fileName + extension;
+                    parameters.Add("stImageUrl", student.ImageUrl);
+
+
                 }
                 else
                 {
@@ -208,7 +211,9 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    teacher.ImageUrl = @"\images" + fileName + extension;
+                    teacher.ImageUrl =fileName + extension;
+                    parameters.Add("stImageUrl", teacher.ImageUrl);
+
                 }
                 else
                 {
@@ -262,6 +267,38 @@ namespace SchoolManagement.Areas.Admin.Controllers
             parameters.Add("stPassword", usermodel.Password);
             if (ModelState.IsValid)
             {
+                string webRootPath = _host.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    if (usermodel.ImageUrl != null)
+                    {
+                        var imagePath = Path.Combine(webRootPath, usermodel.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStreams);
+                    }
+                    usermodel.ImageUrl =fileName + extension;
+                    parameters.Add("stImageUrl", usermodel.ImageUrl);
+
+                }
+                else
+                {
+                    if (usermodel.UserId != 0)
+                    {
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(usermodel.UserId);
+                        usermodel.ImageUrl = objFromDb.ImageUrl;
+                    }
+                }
                 _unitOfWork.SPCall.List<ClassModel>(SD.EditAdminDetails, parameters);
                 _unitOfWork.Save();
             }

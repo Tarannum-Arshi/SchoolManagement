@@ -11,11 +11,12 @@ function loadDataTable() {
         },
         "columns": [
             { "data": "userId" },
-            { "data": "firstName"},
-            { "data": "lastName"},
-            { "data": "gender"},
-            { "data": "dob"},
+            { "data": "firstName" },
+            { "data": "lastName" },
+            { "data": "gender" },
+            { "data": "dob" },
             { "data": "email" },
+            {"data": "imageUrl"},
             { "data": "class" },
             {
                 "data": "userId",

@@ -6,9 +6,16 @@
 
 
 @*<b>Enter Class:</b>
-<input type="text" name="Class"  value="Enter Class"/>*@
+    <input type="text" name="Class"  value="Enter Class"/>*@
 @*<input type="submit" value="Search" />*@
+<div class="col-2 text-right" style="float:right">
+    <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
 
+</div>
+<div class="col-2 text-right" style="float:right">
+    <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+    <h3 class="btn-block">Welcome @User.FindFirst("names").Value  </h3>
+</div>
 <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="TimeTableRoutine">Nursery</a>
 <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="TimeTableRoutine1">Class 1</a>
 <a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="TimeTableRoutine2">Class 2</a>
