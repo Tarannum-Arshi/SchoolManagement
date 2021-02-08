@@ -30,7 +30,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult Register()
         {
-            UserModel usermodel = new UserModel();
+            //UserModel usermodel = new UserModel();
             return View();
         }
 

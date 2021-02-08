@@ -1,0 +1,109 @@
+﻿@model SchoolManagement.Models.ViewModels.Subject
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Edit Result";
+}
+
+
+<form method="post">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    First Name
+                </div>
+
+                <div class="col-8">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Email
+                </div>
+                <div class="col-8">
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Class
+                </div>
+                <div class="col-8">
+                    <input asp-for="Class" type="number" class="form-control" />
+                    <span asp-validation-for="Class" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Maths
+                </div>
+                <div class="col-8">
+                    <input asp-for="Maths" type="number" class="form-control" />
+                    <span asp-validation-for="Maths" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Science
+                </div>
+                <div class="col-8">
+                    <input asp-for="Science" type="number" class="form-control" />
+                    <span asp-validation-for="Science" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    English
+                </div>
+                <div class="col-8">
+                    <input asp-for="English" type="number" class="form-control" />
+                    <span asp-validation-for="English" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Hindi
+                </div>
+                <div class="col-8">
+                    <input asp-for="Hindi" type="number" class="form-control" />
+                    <span asp-validation-for="Hindi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Computer
+                </div>
+                <div class="col-8">
+                    <input asp-for="Computer" type="number" class="form-control" />
+                    <span asp-validation-for="Computer" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <div class="row">
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary form-control"> Edit</button>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

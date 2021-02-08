@@ -1,5 +1,6 @@
 ﻿using SchoolManagement.DataAccess.Data;
 using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace SchoolManagement.DataAccess.Repository
             UserModel = new UserRepository(_db);
             TeacherModel = new TeacherRepository(_db);
             StudentModel = new StudentRepository(_db);
+            Subject = new SubjectRepository(_db);
             
             SPCall = new SPCall(_db);
         }
@@ -24,7 +26,7 @@ namespace SchoolManagement.DataAccess.Repository
         public ITeacherRepository TeacherModel { get; private set; }
 
         public IStudentRepository StudentModel { get; private set; }
-
+        public ISubjectRepository Subject { get; private set; }
         public ISPCall SPCall { get; private set; }
 
 

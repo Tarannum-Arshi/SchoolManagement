@@ -12,6 +12,8 @@ namespace SchoolManagement.DataAccess.Repository.IRepository
 
         ITeacherRepository TeacherModel { get; }
 
+        ISubjectRepository Subject { get; }
+
         ISPCall SPCall { get; }
         void Save();
     }

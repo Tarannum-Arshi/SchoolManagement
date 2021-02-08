@@ -4,12 +4,21 @@
     ViewData["Title"] = "Home Page";
 }
 <div class="text-center">
-    <h4 class="display-4" >
+    <h4 class="display-4">
         Welcome @User.FindFirst("names").Value
     </h4>
     <div class="col-2 text-center" style="float:left">
         <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="Leave">Apply for Leave</a>
     </div>
+    <div class="col-2 text-center" style="float:left">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="UploadResult">Upload Result</a>
+    </div>
+    @*<div class="col-2 text-center" style="float:left">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="Result">Create Result</a>
+    </div>
+    <div class="col-2 text-center" style="float:left">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="EditResult">Edit Result</a>
+    </div>*@
     <div class="col-2 text-right" style="float:right">
         <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
     </div>
