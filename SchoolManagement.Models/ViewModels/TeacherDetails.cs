@@ -27,7 +27,7 @@ namespace SchoolManagement.Models.ViewModels
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
         [Required]
