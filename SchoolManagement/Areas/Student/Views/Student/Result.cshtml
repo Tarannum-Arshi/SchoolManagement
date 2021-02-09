@@ -19,6 +19,9 @@
     <div class="col-2 text-right" style="float:right">
         <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
     </div>
+    <div class="col-2 text-right" style="float:right">
+        <img src="\Images\@User.FindFirst("image").Value" width="30px" height="40px" style="border-radius:5px; border:1px solid #4cff00">
+    </div>
     <div class="text-sm-left">
         <h5 class="btn-block">Result</h5>
     </div>
@@ -36,16 +39,16 @@
         </tr>
         @foreach (var marks in Model)
         {
-    <tr>
-        <td>@marks.FirstName</td>
-        <td>@marks.Email</td>
-        <td>@marks.Class</td>
-        <td>@marks.Maths</td>
-        <td>@marks.Science</td>
-        <td>@marks.English</td>
-        <td>@marks.Hindi</td>
-        <td>@marks.Computer</td>
-    </tr>
+            <tr>
+                <td>@marks.FirstName</td>
+                <td>@marks.Email</td>
+                <td>@marks.Class</td>
+                <td>@marks.Maths</td>
+                <td>@marks.Science</td>
+                <td>@marks.English</td>
+                <td>@marks.Hindi</td>
+                <td>@marks.Computer</td>
+            </tr>
         }
     </table>
 </body>

@@ -15,7 +15,10 @@
 
     </div>
     <div class="col-2 text-right" style="float:right">
-        <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+        <img src="\Images\@User.FindFirst("image").Value" width="30%" height="40px" style="border-radius:5px; border:1px solid #4cff00">
+        <h4 class="display-4">
+            Welcome @User.FindFirst("names").Value
+        </h4>
     </div>
     <table id="studfee" class="table table-striped table-bordered" style="width:100%">
         <tr>
