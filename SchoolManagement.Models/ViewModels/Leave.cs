@@ -9,8 +9,6 @@ namespace SchoolManagement.Models.ViewModels
 {
     public class Leaves
     {
-        [Key]
-        public int LeaveId { get; set; }
 
         [Required]
         public string Name { get; set; }
