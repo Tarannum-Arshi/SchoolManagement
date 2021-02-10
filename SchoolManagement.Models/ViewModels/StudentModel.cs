@@ -21,10 +21,13 @@ namespace SchoolManagement.Models.ViewModels
         public int UserId { get; set; }
         public UserModel UserModel { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //public DateTime LastPaymentMonth { get; set; }
+        [Required]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}",
+            ApplyFormatInEditMode = true)]
         public DateTime LastPaymentMonth { get; set; }
 
-    
     }
 }

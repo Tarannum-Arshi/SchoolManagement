@@ -55,10 +55,10 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditStudent(int id, StudentDetails studentuser)
+        public IActionResult EditStudent(StudentDetails studentuser)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("inUserId", id);
+            parameters.Add("inUserId", studentuser.UserId);
             parameters.Add("stFirstName", studentuser.FirstName);
             parameters.Add("stLastName", studentuser.LastName);
             parameters.Add("stGender", studentuser.Gender);
@@ -89,14 +89,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     }
                     studentuser.ImageUrl =fileName + extension;
                     parameters.Add("stImageUrl", studentuser.ImageUrl);
-                }
-                else
-                {
-                    if (studentuser.UserId != 0)
-                    {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(studentuser.UserId);
-                        studentuser.ImageUrl = objFromDb.ImageUrl;
-                    }
                 }
                 _unitOfWork.SPCall.List<StudentDetails>(SD.EditStudentDetails, parameters);
                 _unitOfWork.Save();

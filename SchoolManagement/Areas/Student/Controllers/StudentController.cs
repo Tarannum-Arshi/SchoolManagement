@@ -19,6 +19,7 @@ using Microsoft.Extensions.Options;
 namespace SchoolManagement.Areas.Student.Controllers
 {
     [Area("Student")]
+
     public class StudentController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -35,11 +36,7 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
-        public IActionResult Result()
-        {
-            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
-            return View(obj);
-        }
+      
         public IActionResult Fee()
         {
             string claimvalue = User.FindFirst("id").Value;
@@ -176,22 +173,6 @@ namespace SchoolManagement.Areas.Student.Controllers
 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Result(Subject subject)
-        {
-            var parameters = new DynamicParameters();
-            parameters.Add("firstName", subject.FirstName);
-            parameters.Add("email", subject.Email);
-            parameters.Add("class", subject.Class);
-            parameters.Add("maths", subject.Maths);
-            parameters.Add("science", subject.Science);
-            parameters.Add("english", subject.English);
-            parameters.Add("hindi", subject.Hindi);
-            parameters.Add("computer", subject.Computer);
-            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, parameters);
-            return View(obj);
-        }
 
         #region payment
 

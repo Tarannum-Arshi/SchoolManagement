@@ -11,6 +11,7 @@ namespace SchoolManagement.Utility
         public const string Drop = "getUser";
         public const string GetFee = "getStudentfee";
         public const string InsertClass = "insertClass";
+        public const string InsertSubject = "insertSubject";
         public const string GetAllDueFee = "getDueFee";
         public const string EditStudentDetails = "updateStudents";
         public const string GetStudentDetails = "getStudent";

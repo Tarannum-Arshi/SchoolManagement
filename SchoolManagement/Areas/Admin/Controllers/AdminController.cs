@@ -30,7 +30,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult Register()
         {
-            //UserModel usermodel = new UserModel();
             return View();
         }
 
@@ -51,7 +50,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult EditAdmin(int? id)
+        public IActionResult EditAdmin()
         {
             UserModel usermodel = new UserModel();
             string claimvalue = User.FindFirst("id").Value;
@@ -71,7 +70,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(UserModel usermodel)
-        {
+         {
             usermodel.Role = "a";
 
             if (ModelState.IsValid)

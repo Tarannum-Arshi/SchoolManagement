@@ -26,10 +26,13 @@ namespace SchoolManagement.Models.ViewModels
         public string Gender { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DOB { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //public DateTime DOB { get; set; }
 
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}",
+            ApplyFormatInEditMode = true)]
+        public DateTime DOB { get; set; }
         [Required]
         [MaxLength(60)]
         public string Email { get; set; }

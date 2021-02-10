@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagement.DataAccess.Data;
 
 namespace SchoolManagement.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210208130022_addColToSubject")]
+    partial class addColToSubject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,11 +367,24 @@ namespace SchoolManagement.DataAccess.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("Class")
+                        .HasColumnType("int");
+
                     b.Property<int>("Computer")
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
                     b.Property<int>("English")
                         .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("Hindi")
                         .HasColumnType("int");
@@ -384,8 +399,6 @@ namespace SchoolManagement.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SubjectId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Subject");
                 });
@@ -550,17 +563,6 @@ namespace SchoolManagement.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ClassModel");
-
-                    b.Navigation("UserModel");
-                });
-
-            modelBuilder.Entity("SchoolManagement.Models.ViewModels.Subject", b =>
-                {
-                    b.HasOne("SchoolManagement.Models.ViewModels.UserModel", "UserModel")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("UserModel");
                 });

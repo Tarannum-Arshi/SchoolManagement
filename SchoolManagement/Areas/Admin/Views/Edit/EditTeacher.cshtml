@@ -16,6 +16,14 @@
             <h2 class="text-primary">@title</h2>
         </div>
         <div class="col-8 pt-4">
+            @*<div class="form-group row">
+                <div class="col-4">
+                    
+                </div>
+                <div class="col-8">
+                    <input asp-for="UserId" type="hidden" class="form-control" />
+                </div>
+            </div>*@
             <div class="form-group row">
                 <div class="col-4">
                     First Name
@@ -72,13 +80,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                 <div class="col-4">
-                     Images
-                 </div>
-                 <div class="col-8">
-                     <input asp-for="ImageUrl" type="file"   multiple class="form-control" />
-                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
-                 </div>
+                <div class="col-4">
+                    Images
+                </div>
+                <div class="col-8">
+                    <input asp-for="ImageUrl" type="file" multiple class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-8 offset-4">
