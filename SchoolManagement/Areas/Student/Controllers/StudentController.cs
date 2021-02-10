@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using SchoolManagement.Utility.Razorpay;
 using Microsoft.Extensions.Options;
+using paytm;
 
 namespace SchoolManagement.Areas.Student.Controllers
 {
@@ -39,46 +40,6 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             Subject subject = new Subject();
             return View(subject);
-        }
-        public IActionResult Fee()
-        {
-            string claimvalue = User.FindFirst("id").Value;
-            var parameters = new DynamicParameters();
-            parameters.Add("inUserId", claimvalue);
-            //var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
-
-            //var fee = new DynamicParameters();
-            var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, parameters);
-            Payments payment = new Payments();
-            foreach(var data in dataset)
-            {
-                payment.name = data.Name;
-                payment.email = data.Email;
-                payment.contactNumber = "9931159589";
-                payment.address = "Ranchi";
-                payment.amount = data.FeeCharge;
-                payment.UserId = Convert.ToInt32(claimvalue);
-               // payment.User = user;
-            }
-            //payments.amount=fee.
-
-
-            //var identity = new ClaimsIdentity(new[] {
-            //new Claim("fee", Fee.FeeCharge.ToString()) 
-            //}, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            //var principal = new ClaimsPrincipal(identity);
-            //var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-
-            //Hardcoded values
-            /*string name = "Vaibhav";
-            string email = "vbhvsngh07@gmail.com";
-            string month = "3";
-            string fee_total = "1500";*/
-
-            return View( payment);
-            
         }
 
         public IActionResult Holiday()
@@ -121,6 +82,49 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
+
+        public IActionResult Fee()
+        {
+            string claimvalue = User.FindFirst("id").Value;
+            var parameters = new DynamicParameters();
+            parameters.Add("inUserId", claimvalue);
+            //var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
+
+            //var fee = new DynamicParameters();
+            var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, parameters);
+            Payments payment = new Payments();
+            foreach(var data in dataset)
+            {
+                payment.name = data.Name;
+                payment.email = data.Email;
+                payment.contactNumber = "9931159589";
+                payment.address = "Ranchi";
+                payment.amount = data.FeeCharge;
+                payment.UserId = Convert.ToInt32(claimvalue);
+               // payment.User = user;
+            }
+            //payments.amount=fee.
+
+
+            //var identity = new ClaimsIdentity(new[] {
+            //new Claim("fee", Fee.FeeCharge.ToString()) 
+            //}, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            //var principal = new ClaimsPrincipal(identity);
+            //var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+
+            //Hardcoded values
+            /*string name = "Vaibhav";
+            string email = "vbhvsngh07@gmail.com";
+            string month = "3";
+            string fee_total = "1500";*/
+
+            return View( payment);
+            
+        }
+
+        
         public IActionResult RazorpayPayment()
         {
             string claimvalue = User.FindFirst("id").Value;
@@ -302,9 +306,159 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
+        #endregion
+
+
+        #region PaytmPayment
+
+        public IActionResult PaytmPayment()
+        {
+            string claimvalue = User.FindFirst("id").Value;
+            var parameters = new DynamicParameters();
+            parameters.Add("inUserId", claimvalue);
+            //var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
+
+            //var fee = new DynamicParameters();
+            var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, parameters);
+            Payments payment = new Payments();
+            foreach (var data in dataset)
+            {
+                payment.name = data.Name;
+                payment.email = data.Email;
+                payment.contactNumber = "7631167103";
+                payment.address = "Ranchi";
+                payment.amount = data.FeeCharge;
+                payment.UserId = Convert.ToInt32(claimvalue);
+                // payment.User = user;
+            }
+
+
+
+            return View(payment);
+        }
+
+
+        [HttpPost]
+        public ContentResult PaytmPayment(string Order_Id, string User_Id, string Email, string Contact_No, string Amount)
+        {
+           
+            String merchantKey = "M4bjjBIoF96_Jvzw";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("MID", "nZOopB58096118599177");
+            parameters.Add("CHANNEL_ID", "WEB");
+            parameters.Add("INDUSTRY_TYPE_ID", "Retail");
+            parameters.Add("WEBSITE", "WEBSTAGING");
+            parameters.Add("EMAIL", Email);
+            parameters.Add("MOBILE_NO", Contact_No);
+            parameters.Add("CUST_ID", User_Id);
+            parameters.Add("ORDER_ID", Order_Id);
+            parameters.Add("TXN_AMOUNT", Amount);
+            parameters.Add("CALLBACK_URL", "https://localhost:44305/Student/Student/PaytmPaymentCallBack"); //This parameter is not mandatory. Use this to pass the callback url dynamically.
+            string checksum = CheckSum.generateCheckSum(merchantKey, parameters);
+            string paytmURL = "https://securegw-stage.paytm.in/order/process?orderid=" + Order_Id;
+            string outputHTML = "<html>";
+            outputHTML += "<head>";
+            outputHTML += "<title>Merchant Check Out Page</title>";
+            outputHTML += "</head>";
+            outputHTML += "<body>";
+            outputHTML += "<center>Please do not refresh this page...</center>"; //you can put h1 tag here
+            outputHTML += "<form method='post' action='" + paytmURL + "' name='f1'>";
+            outputHTML += "<table border='1'>";
+            outputHTML += "<tbody>";
+            foreach (string key in parameters.Keys)
+            {
+                outputHTML += "<input type='hidden' name='" + key + "' value='" + parameters[key] + "'>";
+            }
+            outputHTML += "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "'>";
+            outputHTML += "</tbody>";
+            outputHTML += "</table>";
+            outputHTML += "<script type='text/javascript'>";
+            outputHTML += "document.f1.submit();";
+            outputHTML += "</script>";
+            outputHTML += "</form>";
+            outputHTML += "</body>";
+            outputHTML += "</html>";
+            return base.Content(outputHTML, "text/html");
+
+        }
+
+
+        //[HttpPost]
+        public IActionResult PaytmPaymentCallBack()
+        {
+            String merchantKey = "M4bjjBIoF96_Jvzw";
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string paytmChecksum = "";
+            foreach (string key in Request.Form.Keys)
+            {
+                string key_trim = Request.Form[key];
+                parameters.Add(key.Trim(), key_trim.Trim());
+                // parameters.Add(key.Trim(), Request.Form[key].Trim());
+            }
+            if (parameters.ContainsKey("CHECKSUMHASH"))
+            {
+                paytmChecksum = parameters["CHECKSUMHASH"];
+                parameters.Remove("CHECKSUMHASH");
+            }
+            if (CheckSum.verifyCheckSum(merchantKey, parameters, paytmChecksum))
+            {
+                string paytmStatus = parameters["STATUS"];
+                string txnId = parameters["TXNID"];
+                string traxid = "Transaction Id : " + txnId;
+                if (paytmStatus == "TXN_SUCCESS")
+                {
+                    string id = User.FindFirst("id").Value;
+                   // string id = parameters["RESPCODE"];
+                    var paymentParam = new DynamicParameters();
+                    paymentParam.Add("inUserId", id);
+                    var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, paymentParam);
+
+                    foreach (var data in dataset)
+                    {
+
+                        string emailbody = GetBody("feepayment", data.Name, " ", " ", " ", data.Month.ToString(), data.FeeCharge.ToString());
+                        EmailConfig.SendMail(data.Email, "Welcome", emailbody);
+                        /*payment.name = data.Name;
+                        payment.email = data.Email;
+                        payment.contactNumber = "9931159589";
+                        payment.address = "Ranchi";
+                        payment.amount = data.FeeCharge;
+                        payment.UserId = Convert.ToInt32(claimvalue);*/
+                        // payment.User = user;
+                    }
+                    // Create these action method
+                    // string emailbody = GetBody("feepayment", FirstName, Email, Password);
+                    //EmailConfig.SendMail(Email, "Welcome", emailbody);
+                    _unitOfWork.SPCall.List<FeeDetails>(SD.UpdateFeeDate, paymentParam);
+                    return Content("Payment Successful!!- "+ traxid);
+                }
+                else if (paytmStatus == "PENDING")
+                {
+                    return Content("Payment Pending!!");
+                }
+                else if (paytmStatus == "TXN_FAILURE")
+                {
+                    return Content("Payment Failed!!");
+                }
+                return Content("Checksum Matched");
+            }
+            else
+            {
+                return Content("Checksum MisMatch");
+            }
+        }
+
 
 
         #endregion
+
+
+
+
+
+
+
+       
 
 
 

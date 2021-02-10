@@ -38,4 +38,10 @@
     <ProjectReference Include="..\SchoolManagement.Utility\SchoolManagement.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="paytm">
+      <HintPath>bin\Debug\net5.0\paytm.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

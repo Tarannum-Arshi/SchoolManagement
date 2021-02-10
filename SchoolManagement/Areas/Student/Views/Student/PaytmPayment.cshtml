@@ -1,0 +1,71 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model SchoolManagement.Models.ViewModels.Payments
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var title = "Create Tag";
+}
+
+<h1>Paytm</h1>
+
+<form method="post">
+    <div class="row p-3 border">
+        <div  class="text-danger"></div>
+        <div class="col-12 border-bottom">
+
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    Order Id
+                </div>
+                <div class="col-8">
+                    <input  id="Order_Id" name="Order_Id"  class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div><br></div>
+                <div class="col-4">
+                    User Id
+                </div>
+                <div class="col-8">
+                    <input id="User_Id" name="User_Id" asp-for="@Model.UserId" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                   Name
+                </div>
+                <div class="col-8">
+                    <input id="Name" name="Name" asp-for="@Model.name" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    Email
+                </div>
+                <div class="col-8">
+                    <input id="Email" name="Email" asp-for="@Model.email" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    Contact No
+                </div>
+                <div class="col-8">
+                    <input id="Contact_No" name="Contact_No" asp-for="@Model.contactNumber" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    Amount
+                </div>
+                <div class="col-8">
+                    <input type="hidden"   id="Amount" name="Amount" asp-for="@Model.amount" class="form-control" />
+                    <h5> @Model.amount </h5>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+
+                    <button type="submit" class="btn btn-primary form-control">Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
