@@ -18,7 +18,7 @@ namespace SchoolManagement.DataAccess.Repository
             TeacherModel = new TeacherRepository(_db);
             StudentModel = new StudentRepository(_db);
             Subject = new SubjectRepository(_db);
-            
+            Admin = new AdminRepository(_db);
             SPCall = new SPCall(_db);
         }
 
@@ -27,8 +27,8 @@ namespace SchoolManagement.DataAccess.Repository
 
         public IStudentRepository StudentModel { get; private set; }
         public ISubjectRepository Subject { get; private set; }
+        public IAdminRepository Admin { get; private set; }
         public ISPCall SPCall { get; private set; }
-
 
         public void Dispose()
         {
