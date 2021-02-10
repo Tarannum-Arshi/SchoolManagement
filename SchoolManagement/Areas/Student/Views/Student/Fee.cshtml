@@ -15,9 +15,19 @@
 <div class="col-2 text-right" style="float:right">
     <img src="\Images\@User.FindFirst("image").Value" width="30px" height="40px" style="border-radius:5px; border:1px solid #4cff00">
 </div>
-    
-    <div class="text-center">
-        <h2 class="text-primary"> Your due fees= @Model.amount </h2>
-        <a type="submit" class="btn btn-primary form-control" style="width:20%;" asp-area="Student" asp-controller="Student" asp-action="RazorpayPayment">Razorpay</a>
+  @if (Model.amount > 0)
+  {
+<div class="text-center">
+    <h2 class="text-primary"> Your due fees= @Model.amount </h2>
+    <a type="submit" class="btn btn-primary form-control" style="width:40%;" asp-area="Student" asp-controller="Student" asp-action="RazorpayPayment">Pay With Razorpay</a>
+    <br><br>
+    <a type="submit" class="btn btn-primary form-control" style="width:20%;" asp-area="Student" asp-controller="Student" asp-action="PaytmPayment">Pay With Paytm</a>
 
-    </div>
+</div>
+  }
+  else
+  {
+<div class="text-center">
+    <h2 class="text-primary"> Your due fees= @Model.amount </h2>
+</div>
+    }
