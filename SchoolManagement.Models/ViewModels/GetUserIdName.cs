@@ -12,7 +12,6 @@ namespace SchoolManagement.Models.ViewModels
         [Required]
         public int UserId { get; set; }
         [Required]
-        [MaxLength(60)]
         public string Name { get; set; }
     }
 }
