@@ -1,7 +1,9 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.Models;
 using SchoolManagement.Models.ViewModels;
 using SchoolManagement.Utility;
 using System;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "a")]
     public class AdminController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -52,13 +55,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult EditAdmin(int? id)
+        public IActionResult EditAdmin()
         {
-            UserModel usermodel = new UserModel();
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
 
-            usermodel = _unitOfWork.UserModel.Get(UserId);
+           UserModel usermodel = _unitOfWork.UserModel.Get(UserId);
 
             if (usermodel==null)
             {
@@ -98,14 +100,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                         files[0].CopyTo(fileStreams);
                     }
                     usermodel.ImageUrl =fileName + extension;
-                }
-                else
-                {
-                    if(usermodel.UserId !=0)
-                    {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(usermodel.UserId);
-                        usermodel.ImageUrl = objFromDb.ImageUrl;
-                    }
                 }
 
                 _unitOfWork.UserModel.Add(usermodel);
@@ -155,14 +149,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     parameters.Add("stImageUrl", student.ImageUrl);
 
 
-                }
-                else
-                {
-                    if (student.UserId != 0)
-                    {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(student.UserId);
-                        student.ImageUrl = objFromDb.ImageUrl;
-                    }
                 }
 
                 _unitOfWork.SPCall.List<StudentModel>(SD.Stud_Reg, parameters);
@@ -216,14 +202,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     parameters.Add("stImageUrl", teacher.ImageUrl);
 
                 }
-                else
-                {
-                    if (teacher.UserId != 0)
-                    {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(teacher.UserId);
-                        teacher.ImageUrl = objFromDb.ImageUrl;
-                    }
-                }
                 _unitOfWork.SPCall.List<TeacherModel>(SD.Teacher_Reg, parameters);
                 _unitOfWork.Save();
                 string emailbody = GetBody("welcome", teacher.FirstName, teacher.Email, teacher.Password);
@@ -241,8 +219,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddClass(int Class,int FeeCharge,int UserId)
         {
-            TeacherModel teacher = new TeacherModel();
-            teacher = _unitOfWork.TeacherModel.Get(UserId);
+            TeacherModel teacher = _unitOfWork.TeacherModel.Get(UserId);
             var parameters = new DynamicParameters();
             parameters.Add("inTeacherId", teacher.TeacherId);
             parameters.Add("inClass", Class);
@@ -294,10 +271,12 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 }
                 else
                 {
-                    if (usermodel.UserId != 0)
+                    if (UserId != 0)
                     {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(usermodel.UserId);
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(UserId);
                         usermodel.ImageUrl = objFromDb.ImageUrl;
+                        parameters.Add("stImageUrl", usermodel.ImageUrl);
+
                     }
                 }
                 _unitOfWork.SPCall.List<ClassModel>(SD.EditAdminDetails, parameters);
@@ -327,7 +306,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Password}", Password);
 
 
-                    return str;
 
                     break;
 
@@ -340,8 +318,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Notice}", Notice);
 
-
-                    return str;
+                    
                     break;
 
                 case "feepayment":
@@ -355,7 +332,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Amount}", Amount);
                     str = str.Replace("{Status}", Status);
 
-                    return str;
                     break;
 
                 case "feereminder":
@@ -367,7 +343,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Month}", Month);
 
-                    return str;
                     break;
 
                 case "assignment":
@@ -379,7 +354,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Assignment}", Assignment);
 
-                    return str;
                     break;
 
 

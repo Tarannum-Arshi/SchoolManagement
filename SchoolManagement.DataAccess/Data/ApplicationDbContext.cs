@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models.ViewModels;
+using SchoolManagement.Models;
 
 namespace SchoolManagement.DataAccess.Data
 {

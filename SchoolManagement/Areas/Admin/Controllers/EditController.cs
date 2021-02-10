@@ -1,7 +1,9 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.Models;
 using SchoolManagement.Models.ViewModels;
 using SchoolManagement.Utility;
 using System;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "a")]
     public class EditController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -44,7 +47,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
             }
             return View(student);
         }
-        public IActionResult EditTeacher(int id)
+        public IActionResult EditTeacher()
         {
             TeacherDetails teacher = new TeacherDetails();
             if(teacher==null)
@@ -92,10 +95,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 }
                 else
                 {
-                    if (studentuser.UserId != 0)
+                    if (id != 0)
                     {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(studentuser.UserId);
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(id);
                         studentuser.ImageUrl = objFromDb.ImageUrl;
+                        parameters.Add("stImageUrl", studentuser.ImageUrl);
                     }
                 }
                 _unitOfWork.SPCall.List<StudentDetails>(SD.EditStudentDetails, parameters);
@@ -143,10 +147,11 @@ namespace SchoolManagement.Areas.Admin.Controllers
                 }
                 else
                 {
-                    if (teacheruser.UserId != 0)
+                    if (id != 0)
                     {
-                        UserModel objFromDb = _unitOfWork.UserModel.Get(teacheruser.UserId);
+                        UserModel objFromDb = _unitOfWork.UserModel.Get(id);
                         teacheruser.ImageUrl = objFromDb.ImageUrl;
+                        parameters.Add("stImageUrl", teacheruser.ImageUrl);
                     }
                 }
                 _unitOfWork.SPCall.List<TeacherDetails>(SD.EditTeacherDetails, parameters);

@@ -1,6 +1,6 @@
 ﻿using SchoolManagement.DataAccess.Data;
 using SchoolManagement.DataAccess.Repository.IRepository;
-using SchoolManagement.Models.ViewModels;
+using SchoolManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

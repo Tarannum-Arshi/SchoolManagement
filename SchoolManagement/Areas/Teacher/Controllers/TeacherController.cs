@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
+using SchoolManagement.Models;
 using SchoolManagement.Models.ViewModels;
 using SchoolManagement.Utility;
 using System;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Teacher.Controllers
 {
     [Area("Teacher")]
+    [Authorize(Roles = "t")]
     public class TeacherController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
