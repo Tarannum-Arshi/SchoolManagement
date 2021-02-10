@@ -9,6 +9,6 @@ namespace SchoolManagement.DataAccess.Repository.IRepository
 {
     public interface IStudentRepository : IRepository<StudentModel>
     {
-        
+        public IEnumerable<GetUserIdName> FeeDetailFunction();
     }
 }
