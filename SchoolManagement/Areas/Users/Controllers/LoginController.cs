@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using SchoolManagement.Utility;
 
 namespace SchoolManagement.Areas.Users.Controllers
 {
@@ -54,15 +55,15 @@ namespace SchoolManagement.Areas.Users.Controllers
                     var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
                     string value = admin.Role.ToString();
-                    if (value== "a")
+                    if (value== SD.Admin)
                     {
                         return RedirectToAction("Index", "Admin", new { area = "Admin" });
                     }
-                    else if(value == "t")
+                    else if(value == SD.Teacher)
                     {
                         return RedirectToAction("Index", "Teacher", new { area = "Teacher" });
                     }
-                    else if(value == "s")
+                    else if(value == SD.Student)
                     {
                         return RedirectToAction("Index", "Student", new { area = "Student" });
                     }

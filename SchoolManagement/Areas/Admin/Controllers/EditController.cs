@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "a")]
+    [Authorize(Roles = SD.Admin)]
     public class EditController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;

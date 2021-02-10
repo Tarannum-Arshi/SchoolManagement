@@ -26,6 +26,9 @@ namespace SchoolManagement.Utility
         public const string UpdateFeeDate = "updateStudentFeeDate";
         public const string GetResult = "getSubject";
         public const string EditResult = "updateSubject";
+        public const string Admin = "a";
+        public const string Teacher = "t";
+        public const string Student = "s";
 
 
 

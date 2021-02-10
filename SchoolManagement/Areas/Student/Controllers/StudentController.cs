@@ -21,7 +21,7 @@ using SchoolManagement.Models.ViewModels;
 namespace SchoolManagement.Areas.Student.Controllers
 {
     [Area("Student")]
-    [Authorize(Roles = "s")]
+    [Authorize(Roles = SD.Student)]
     public class StudentController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;

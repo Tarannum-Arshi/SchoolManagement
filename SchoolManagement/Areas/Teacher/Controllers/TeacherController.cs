@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Teacher.Controllers
 {
     [Area("Teacher")]
-    [Authorize(Roles = "t")]
+    [Authorize(Roles = SD.Teacher)]
     public class TeacherController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
