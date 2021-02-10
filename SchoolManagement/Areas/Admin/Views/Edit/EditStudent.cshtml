@@ -6,7 +6,7 @@
 }
 
 <div class="col-2 text-right" style="float:right">
-    <img src="\Images\@User.FindFirst("image").Value" width="30px" height="40px" style="border-radius:5px; border:1px solid #4cff00">
+    <img src="\Images\@User.FindFirst("image").Value" style="width:30px; height: 40px; border-radius:5px; border:1px solid #4cff00">
 </div>
 <form method="post" enctype="multipart/form-data">
     <div class="row p-3 border">
@@ -73,18 +73,20 @@
                 </div>
             </div>
             <div class="form-group row">
-                    <div class="col-4">
-                        Images
-                    </div>
-                    <div class="col-8">
-                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
-                    </div>
+                <div class="col-4">
+                    Images
+                </div>
+                <div class="col-8">
+                    <input asp-for="ImageUrl" type="file" id="uploadBox" multiple class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-8 offset-4">
                     <div class="row">
                         <div class="row">
-                            <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control"> Edit</button>
+                            <button type="submit" class="btn btn-primary form-control"> Edit</button>
+                            <p id="demo"> </p>
                         </div>
                     </div>
                 </div>
@@ -95,14 +97,5 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
-    <script>
-
-        function validateInput() {
-            if (document.getElementsById("uploadBox").value == "") {
-                swal("Error", "Please select an image", "error");
-                return false;
-            }
-            return true;
-        }
-    </script>
+    
 }

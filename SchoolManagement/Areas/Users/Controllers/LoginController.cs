@@ -45,7 +45,7 @@ namespace SchoolManagement.Areas.Users.Controllers
                     new Claim("id", admin.UserId.ToString()),
                     new Claim("names", admin.FirstName.ToString()),
                     new Claim("email", admin.Email.ToString()),
-                    new Claim("role", admin.Role.ToString()),
+                    new Claim(ClaimTypes.Role, admin.Role),
                     new Claim("image", admin.ImageUrl.ToString()),
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
 
