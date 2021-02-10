@@ -8,21 +8,16 @@ namespace SchoolManagement.Models.ViewModels
 {
     public class StudentDetails
     {
-        [Key]
-        public int StudentDetailsId {get; set; }
         [Required]
         public int UserId { get; set; }
         
         [Required]
-        [MaxLength(40)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(40)]
         public string LastName { get; set; }
 
         [Required]
-        [MaxLength(4)]
         public string Gender { get; set; }
 
         [Required]
@@ -31,11 +26,9 @@ namespace SchoolManagement.Models.ViewModels
         public DateTime DOB { get; set; }
 
         [Required]
-        [MaxLength(60)]
         public string Email { get; set; }
 
         [Required]
-        [Range(1,7)]
         public int Class { get; set; }
         public string ImageUrl { get; set; }
 

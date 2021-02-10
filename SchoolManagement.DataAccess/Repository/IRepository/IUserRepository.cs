@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq.Expressions;
 using System.Linq;
-using SchoolManagement.Models.ViewModels;
+using SchoolManagement.Models;
 
 namespace SchoolManagement.DataAccess.Repository.IRepository
 {

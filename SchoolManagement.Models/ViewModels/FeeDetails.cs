@@ -7,8 +7,6 @@ namespace SchoolManagement.Models.ViewModels
 {
     public class FeeDetails
     {
-        [Key]
-        public int FeeId { get; set; }
 
         public string Name { get; set; }
 

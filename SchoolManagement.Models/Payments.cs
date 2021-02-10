@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.Models.ViewModels
+namespace SchoolManagement.Models
 {
     public class Payments
     {

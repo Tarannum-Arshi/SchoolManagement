@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace SchoolManagement.Models.ViewModels
+namespace SchoolManagement.Models
 {
     public class TeacherModel
     {

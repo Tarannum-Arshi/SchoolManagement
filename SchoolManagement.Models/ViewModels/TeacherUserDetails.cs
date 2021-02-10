@@ -7,22 +7,17 @@ namespace SchoolManagement.Models.ViewModels
 {
     public class TeacherUserDetails
     {
-        [Key]
-        public int TeacherUserId { get; set; }
 
         [Required]
         public int UserId { get; set; }
 
         [Required]
-        [MaxLength(40)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(40)]
         public string LastName { get; set; }
 
         [Required]
-        [MaxLength(4)]
         public string Gender { get; set; }
 
         [DataType(DataType.Date)]
@@ -30,11 +25,9 @@ namespace SchoolManagement.Models.ViewModels
         public DateTime DOB { get; set; }
 
         [Required]
-        [MaxLength(60)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(20)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

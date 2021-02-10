@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SchoolManagement.DataAccess.Repository.IRepository;
-using SchoolManagement.Models.ViewModels;
+using SchoolManagement.Models;
 using SchoolManagement.Utility;
 using System;
 using System.Collections.Generic;
@@ -15,11 +15,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using SchoolManagement.Utility.Razorpay;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
+using SchoolManagement.Models.ViewModels;
 using paytm;
 
 namespace SchoolManagement.Areas.Student.Controllers
 {
     [Area("Student")]
+    [Authorize(Roles = "s")]
     public class StudentController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -483,8 +486,6 @@ namespace SchoolManagement.Areas.Student.Controllers
                     str = str.Replace("{Password}", Password);
 
 
-                    return str;
-
                     break;
 
                 case "notice":
@@ -497,7 +498,6 @@ namespace SchoolManagement.Areas.Student.Controllers
                     str = str.Replace("{Notice}", Notice);
 
 
-                    return str;
                     break;
 
                 case "feepayment":
@@ -511,7 +511,6 @@ namespace SchoolManagement.Areas.Student.Controllers
                     str = str.Replace("{Amount}", Amount);
                     str = str.Replace("{Status}", Status);
 
-                    return str;
                     break;
 
                 case "feereminder":
@@ -523,7 +522,6 @@ namespace SchoolManagement.Areas.Student.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Month}", Month);
 
-                    return str;
                     break;
 
                 case "assignment":
@@ -535,7 +533,6 @@ namespace SchoolManagement.Areas.Student.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Assignment}", Assignment);
 
-                    return str;
                     break;
 
 

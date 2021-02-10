@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagement.Models.ViewModels
 {
-    public class Drop
+    public class GetUserIdName
     {
-        [Key]
-        public int DropId { get; set; }
         [Required]
         public int UserId { get; set; }
         [Required]
-        [MaxLength(60)]
         public string Name { get; set; }
-
     }
 }
