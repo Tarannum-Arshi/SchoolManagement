@@ -34,7 +34,9 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         }
         public IActionResult ViewResult()
         {
-            return View();
+            StudentSubjectDetails studentsubjectdetails = new StudentSubjectDetails();
+            var obj = _unitOfWork.SPCall.List<StudentSubjectDetails>(SD.GetResult, null);
+            return View(obj);
         }
         public IActionResult EditResult()
         {
