@@ -70,7 +70,8 @@ namespace SchoolManagement.Areas.Users.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Wrong username and password");
+                    ViewBag.Message = "UserName or password is wrong";
+                    return View();
 
                 }
             }
