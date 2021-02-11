@@ -10,6 +10,7 @@
             display: block;
             background-color: inherit;
             color: #000000;
+            text-decoration: none;
             padding: 22px 16px;
             width: 100%;
             border: none;
@@ -22,10 +23,12 @@
 
     .tab a:hover {
             background-color: #006600;
+            text-shadow: 2px 2px #FF0000;
             color: #ffffff;
     }
 
     .tab a.active {
+            text-shadow: 2px 2px #FF0000;
             background-color: #006600;
             color: #ffffff;
     }
@@ -37,7 +40,7 @@
     }
     
     #studfee td, #studfee th {
-            border: 1px solid #ddd;
+            border: 1px solid #4CAF50;
             padding: 8px;
     }
     

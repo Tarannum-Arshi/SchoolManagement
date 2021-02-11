@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.DataAccess.Repository.IRepository;
 using SchoolManagement.Models.ViewModels;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Admin)]
     public class FeeController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -61,7 +63,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Password}", Password);
 
 
-                    return str;
 
                     break;
 
@@ -75,7 +76,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Notice}", Notice);
 
 
-                    return str;
                     break;
 
                 case "feepayment":
@@ -89,7 +89,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Amount}", Amount);
                     str = str.Replace("{Status}", Status);
 
-                    return str;
                     break;
 
                 case "feereminder":
@@ -101,7 +100,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Amount}", Amount);
 
-                    return str;
                     break;
 
                 case "assignment":
@@ -113,7 +111,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
                     str = str.Replace("{Name}", Name);
                     str = str.Replace("{Assignment}", Assignment);
 
-                    return str;
                     break;
 
 

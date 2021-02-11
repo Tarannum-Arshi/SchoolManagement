@@ -16,11 +16,11 @@
 
     </div>
     <div class="col-2 text-right" style="float:right">
-        <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
+        <img src="\Images\@User.FindFirst("image").Value" width="30px" height="40px" style="border-radius:5px; border:1px solid #4cff00">
     </div>
     <div class="tab">
         <h3 class="btn-block"> Welcome @User.FindFirst("names").Value </h3>
-        <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="RazorpayPayment">Fee Payment</a>
+        <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="Fee">Fee Payment</a>
         <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="Holiday">Check Holiday List</a>
         <a class="tablinks" asp-area="Student" asp-controller="Student" asp-action="TimeTable">Check TimeTable</a>
        

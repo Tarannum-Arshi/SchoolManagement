@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using SchoolManagement.Utility;
 
 namespace SchoolManagement.Areas.Users.Controllers
 {
@@ -45,7 +46,7 @@ namespace SchoolManagement.Areas.Users.Controllers
                     new Claim("id", admin.UserId.ToString()),
                     new Claim("names", admin.FirstName.ToString()),
                     new Claim("email", admin.Email.ToString()),
-                    new Claim("role", admin.Role.ToString()),
+                    new Claim(ClaimTypes.Role, admin.Role),
                     new Claim("image", admin.ImageUrl.ToString()),
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -54,15 +55,15 @@ namespace SchoolManagement.Areas.Users.Controllers
                     var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
                     string value = admin.Role.ToString();
-                    if (value== "a")
+                    if (value== SD.Admin)
                     {
                         return RedirectToAction("Index", "Admin", new { area = "Admin" });
                     }
-                    else if(value == "t")
+                    else if(value == SD.Teacher)
                     {
                         return RedirectToAction("Index", "Teacher", new { area = "Teacher" });
                     }
-                    else if(value == "s")
+                    else if(value == SD.Student)
                     {
                         return RedirectToAction("Index", "Student", new { area = "Student" });
                     }

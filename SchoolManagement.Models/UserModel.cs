@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SchoolManagement.Models.ViewModels
+namespace SchoolManagement.Models
 {
     public class UserModel
     {

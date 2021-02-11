@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models.ViewModels;
+using SchoolManagement.Models;
 
 namespace SchoolManagement.DataAccess.Data
 {
@@ -20,12 +21,6 @@ namespace SchoolManagement.DataAccess.Data
         public DbSet<TeacherModel> TeacherModel { get; set; }
         public DbSet<ClassModel> ClassModel { get; set; }
         public DbSet<Subject> Subject { get; set; }
-     
-
-        public DbSet<Drop> Drop { get; set; }
-        public DbSet<Fee> Fee { get; set; }
-        public DbSet<DuesFee> DuesFee { get; set; }
-
         public DbSet<Payments> Payments { get; set; }
 
 
