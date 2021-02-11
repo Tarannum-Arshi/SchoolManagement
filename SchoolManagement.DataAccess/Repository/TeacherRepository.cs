@@ -50,7 +50,7 @@ namespace SchoolManagement.DataAccess.Repository
 
         public IEnumerable<Subject> GetResultFunction()
         {
-            DynamicParameters  param = new DynamicParameters(); = new DynamicParameters();
+            DynamicParameters  param = new DynamicParameters();
             using (SqlConnection sqlCon = new SqlConnection(ConnectionString))
             {
                 sqlCon.Open();
