@@ -41,7 +41,7 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             var obj = _unitOfWork.SPCall.List<StudentSubjectDetails>(SD.GetResult, null);
             return View(obj);
         }
-        public IActionResult EditResult()
+        public IActionResult EditResult() 
         {
             Subject subject = new Subject();
             return View(subject);
@@ -67,13 +67,16 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
             teachers = _unitOfWork.TeacherModel.GetFirstOrDefault(a => a.UserId == UserId);
-            var parameters = new DynamicParameters();
-            parameters.Add("inTeacherId", teachers.TeacherId);
-            parameters.Add("inLeaveDays", teacher.LeaveDays);
-            parameters.Add("dtStartDate", teacher.StartDate);
-                _unitOfWork.SPCall.Execute(SD.ApplyForLeave, parameters);
-                _unitOfWork.Save();
-                return RedirectToAction("Index","Teacher",new { area = "Teacher" });
+            _unitOfWork.TeacherModel.GetStudentDetailsFunction(teachers);
+            //var parameters = new DynamicParameters();
+            //parameters.Add("inTeacherId", teachers.TeacherId);
+            //parameters.Add("inLeaveDays", teacher.LeaveDays);
+            //parameters.Add("dtStartDate", teacher.StartDate);
+
+            //    _unitOfWork.SPCall.Execute(SD.ApplyForLeave, parameters);
+
+            _unitOfWork.Save();
+            return RedirectToAction("Index","Teacher",new { area = "Teacher" });
         }
 
         [HttpPost]
