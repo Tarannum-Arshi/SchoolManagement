@@ -28,10 +28,14 @@ namespace SchoolManagement.Models
 
         public int LeaveDays { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //public DateTime StartDate { get; set; }
+
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}",
+            ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
-       
+
         [MaxLength(4)]
         public string Status { get; set; }
     }

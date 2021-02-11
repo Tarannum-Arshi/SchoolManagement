@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace SchoolManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "a")]
+    [Authorize(Roles = SD.Admin)]
     public class EditController : Controller
     {
         public readonly IUnitOfWork _unitOfWork;
@@ -58,10 +58,10 @@ namespace SchoolManagement.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditStudent(int id, StudentDetails studentuser)
+        public IActionResult EditStudent(StudentDetails studentuser)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("inUserId", id);
+            parameters.Add("inUserId", studentuser.UserId);
             parameters.Add("stFirstName", studentuser.FirstName);
             parameters.Add("stLastName", studentuser.LastName);
             parameters.Add("stGender", studentuser.Gender);

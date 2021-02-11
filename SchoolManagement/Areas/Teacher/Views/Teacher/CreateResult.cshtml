@@ -1,17 +1,11 @@
-﻿@model SchoolManagement.Models.Subject
+﻿@model SchoolManagement.Models.ViewModels.Subject
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var title = "Edit Result";
+    var title = "Create Result";
 }
 
-<div class="col-2 text-right" style="float:right">
-    <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
 
-</div>
-<div class="col-2 text-right" style="float:right">
-    <img src="\Images\@User.FindFirst("image").Value" width="30px" height="40px" style="border-radius:5px; border:1px solid #4cff00">
-</div>
 <form method="post">
     <div class="row p-3 border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,7 +13,6 @@
             <h2 class="text-primary">@title</h2>
         </div>
         <div class="col-8 pt-4">
-            <input asp-for="UserId" type="hidden" class="form-control"/>
             <div class="form-group row">
                 <div class="col-4">
                     Maths

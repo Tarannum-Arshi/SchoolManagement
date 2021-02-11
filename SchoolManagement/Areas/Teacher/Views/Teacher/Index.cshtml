@@ -18,8 +18,18 @@
     <div class="col-2 text-center" style="float:left">
         <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="Leave">Apply for Leave</a>
     </div>
-    <div class="col-2 text-center" style="float:left">
-        <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="UploadResult">Upload Result</a>
+
+
+    <div class="col-2 text-right" style="float:right">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Users" asp-controller="Login" asp-action="Logout">Logout</a>
+    </div>
+
+    <div class="col-2 text-right" style="float:right">
+        <a type="submit" class="btn btn-primary form-control" asp-area="Teacher" asp-controller="Teacher" asp-action="Result">Create Result</a>
+    </div>
+    
+    <div class="col-2 text-right" style="float:right">
+        <img src="\Images\@User.FindFirst("image").Value" width="30%" style="border-radius:5px; border:1px solid #4cff00">
     </div>
 </div>
 
