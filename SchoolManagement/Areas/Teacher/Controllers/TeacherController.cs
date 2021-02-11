@@ -26,59 +26,41 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         {
             return View();
         }
-        public IActionResult TimeTable()
-        {
-            return View();
-        }
-
-        public IActionResult Routine()
-        {
-            return View();
-        }
         public IActionResult Result()
         {
             return View();
         }
-        public IActionResult ResultSearch()
+        public IActionResult CreateResult()
         {
-            return View();
+            Subject subject = new Subject();
+            return View(subject);
         }
-        public IActionResult Message()
+        public IActionResult ViewResult()
         {
-            return View();
-        }
-        public IActionResult UploadResult()
-        {
-            //StudentUserDetails student = new StudentUserDetails();
-            //return View(student);
-            var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
-            _unitOfWork.Save();
+            StudentSubjectDetails studentsubjectdetails = new StudentSubjectDetails();
+            var obj = _unitOfWork.SPCall.List<StudentSubjectDetails>(SD.GetResult, null);
             return View(obj);
         }
         public IActionResult EditResult()
         {
             Subject subject = new Subject();
-            if(subject==null)
-            {
-                return NotFound();
-            }
             return View(subject);
         }
-
+        public IActionResult Routine()
+        {
+            return View();
+        }
         public IActionResult Leave()
         {
-
             TeacherModel teacher = new TeacherModel();
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
             teacher = _unitOfWork.TeacherModel.GetFirstOrDefault(a => a.UserId == UserId);
-
             return View(teacher);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public IActionResult Leave(TeacherModel teacher)
         {
             TeacherModel teachers = new TeacherModel();
@@ -89,22 +71,27 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             parameters.Add("inTeacherId", teachers.TeacherId);
             parameters.Add("inLeaveDays", teacher.LeaveDays);
             parameters.Add("dtStartDate", teacher.StartDate);
-
                 _unitOfWork.SPCall.Execute(SD.ApplyForLeave, parameters);
-
                 _unitOfWork.Save();
                 return RedirectToAction("Index","Teacher",new { area = "Teacher" });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Result(Subject subject)
+        public IActionResult CreateResult(int id, Subject subject)
         {
-            if(ModelState.IsValid)
+            var parameters = new DynamicParameters();
+            parameters.Add("inUserId", id);
+            parameters.Add("inMaths", subject.Maths);
+            parameters.Add("inScience", subject.Science);
+            parameters.Add("inEnglish", subject.English);
+            parameters.Add("inHindi", subject.Hindi);
+            parameters.Add("inComputer", subject.Computer);
+            if (ModelState.IsValid)
             {
-                _unitOfWork.Subject.Add(subject);
+                _unitOfWork.SPCall.List<Subject>(SD.InsertSubject, parameters);
                 _unitOfWork.Save();
-                return RedirectToAction("Message", "Teacher", new { area="Teacher"});
+                return RedirectToAction("Index", "Teacher", new { area = "Teacher" });
             }
             return View(subject);
         }
@@ -113,30 +100,26 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         public IActionResult EditResult(int id, Subject subject)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("subjectId", id);
-            parameters.Add("firstName", subject.FirstName);
-            parameters.Add("email", subject.Email);
-            parameters.Add("class", subject.Class);
-            parameters.Add("maths", subject.Maths);
-            parameters.Add("science", subject.Science);
-            parameters.Add("english", subject.English);
-            parameters.Add("hindi", subject.English);
-            parameters.Add("computer", subject.Computer);
-            _unitOfWork.SPCall.List<Subject>(SD.EditResult, parameters);
-            return RedirectToAction("ResultSearch", "Teacher", new { area = "Teacher" });
+            parameters.Add("inUserId", id);
+            parameters.Add("inMaths", subject.Maths);
+            parameters.Add("inScience", subject.Science);
+            parameters.Add("inEnglish", subject.English);
+            parameters.Add("inHindi", subject.Hindi);
+            parameters.Add("inComputer", subject.Computer);
+            if(ModelState.IsValid)
+            {
+                _unitOfWork.SPCall.List<Subject>(SD.EditResult, parameters);
+            }
+            return RedirectToAction("Result", "Teacher", new { area = "Teacher" });
         }
-
         #region API CALLS
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetStudent()
         {
-            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
-            _unitOfWork.Save();
+            var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
             return Json(new { data = obj });
         }
         #endregion
     }
-
-
 }
 

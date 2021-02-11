@@ -33,7 +33,6 @@ namespace SchoolManagement.Areas.Admin.Controllers
 
         public IActionResult Register()
         {
-            //UserModel usermodel = new UserModel();
             return View();
         }
 
@@ -74,7 +73,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(UserModel usermodel)
-        {
+         {
             usermodel.Role = "a";
 
             if (ModelState.IsValid)

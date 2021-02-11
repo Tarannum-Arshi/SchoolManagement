@@ -183,14 +183,6 @@ namespace SchoolManagement.Areas.Student.Controllers
 
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Result(Subject subject)
-        //{
-        //    var parameters = new DynamicParameters();
-        //    parameters.Add("")
-        //    var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, parameters);
-        //}
 
         #region payment
 
