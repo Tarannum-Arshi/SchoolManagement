@@ -49,13 +49,14 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         }
         public IActionResult UploadResult()
         {
-            //StudentUserDetails student = new StudentUserDetails();
-            //return View(student);
-            var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
-            _unitOfWork.Save();
-            return View(obj);
+            StudentUserDetails student = new StudentUserDetails();
+            return View(student);
+            //var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
+            //var obj = _unitOfWork.TeacherModel.GetStudentDetailsFunction();
+            //_unitOfWork.Save();
+            //return View(obj);
         }
-        public IActionResult EditResult()
+        public IActionResult EditResult() 
         {
             Subject subject = new Subject();
             if(subject==null)
@@ -85,15 +86,16 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
             teachers = _unitOfWork.TeacherModel.GetFirstOrDefault(a => a.UserId == UserId);
-            var parameters = new DynamicParameters();
-            parameters.Add("inTeacherId", teachers.TeacherId);
-            parameters.Add("inLeaveDays", teacher.LeaveDays);
-            parameters.Add("dtStartDate", teacher.StartDate);
+            _unitOfWork.TeacherModel.GetStudentDetailsFunction(teachers);
+            //var parameters = new DynamicParameters();
+            //parameters.Add("inTeacherId", teachers.TeacherId);
+            //parameters.Add("inLeaveDays", teacher.LeaveDays);
+            //parameters.Add("dtStartDate", teacher.StartDate);
 
-                _unitOfWork.SPCall.Execute(SD.ApplyForLeave, parameters);
+            //    _unitOfWork.SPCall.Execute(SD.ApplyForLeave, parameters);
 
-                _unitOfWork.Save();
-                return RedirectToAction("Index","Teacher",new { area = "Teacher" });
+            _unitOfWork.Save();
+            return RedirectToAction("Index","Teacher",new { area = "Teacher" });
         }
 
         [HttpPost]
@@ -130,7 +132,8 @@ namespace SchoolManagement.Areas.Teacher.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
+            //var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
+            var obj = _unitOfWork.TeacherModel.GetResultFunction();
             _unitOfWork.Save();
             return Json(new { data = obj });
         }

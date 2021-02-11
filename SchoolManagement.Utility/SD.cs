@@ -27,10 +27,6 @@ namespace SchoolManagement.Utility
         public const string GetResult = "getSubject";
         public const string EditResult = "updateSubject";
 
-
-
-
-
     }
 }
 
