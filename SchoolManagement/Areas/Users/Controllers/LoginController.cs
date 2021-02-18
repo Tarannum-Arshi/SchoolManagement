@@ -70,8 +70,8 @@ namespace SchoolManagement.Areas.Users.Controllers
                 }
                 else
                 {
-                    ViewData["Message"] = "Incorrect username or password";
-                    return RedirectToAction(nameof(Login));
+                    ViewBag.Message = "UserName or password is wrong";
+                    return View();
 
                 }
             }

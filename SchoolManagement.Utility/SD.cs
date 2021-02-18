@@ -31,10 +31,6 @@ namespace SchoolManagement.Utility
         public const string Teacher = "t";
         public const string Student = "s";
 
-
-
-
-
     }
 }
 

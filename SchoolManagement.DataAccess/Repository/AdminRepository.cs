@@ -16,7 +16,7 @@ namespace SchoolManagement.DataAccess.Repository
     public class AdminRepository : IAdminRepository
     {
         private readonly ApplicationDbContext _db;//for access of database
-        private static string ConnectionString = "";//whenever we have to call stored procedure we need connection string
+        private static string ConnectionString;//whenever we have to call stored procedure we need connection string
         public AdminRepository(ApplicationDbContext db)
         {
             _db = db;
@@ -27,11 +27,11 @@ namespace SchoolManagement.DataAccess.Repository
             //GetUserIdName getUserIdName = new GetUserIdName();
             DynamicParameters param = new DynamicParameters();
             //param = null;
-            using (SqlConnection sqlCon = new SqlConnection(ConnectionString))
-            {
+            SqlConnection sqlCon = new SqlConnection(ConnectionString);
+            
                 sqlCon.Open();
                 return sqlCon.Query<GetUserIdName>(SD.Drop,  param ,  commandType: System.Data.CommandType.StoredProcedure);
-            }
+            
         }
 
         //public IEnumerable<T> List<T>(string procedureName, DynamicParameters param = null)

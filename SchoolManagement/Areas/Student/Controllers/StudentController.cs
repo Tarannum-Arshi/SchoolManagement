@@ -99,12 +99,12 @@ namespace SchoolManagement.Areas.Student.Controllers
         public IActionResult Fee()
         {
             string claimvalue = User.FindFirst("id").Value;
-            var parameters = new DynamicParameters();
-            parameters.Add("inUserId", claimvalue);
+            //var parameters = new DynamicParameters();
+            //parameters.Add("inUserId", claimvalue);
             //var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
 
             //var fee = new DynamicParameters();
-            var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, parameters);
+            var dataset = _unitOfWork.StudentModel.FeeDetailFunction(claimvalue);
             Payments payment = new Payments();
             foreach(var data in dataset)
             {
@@ -117,22 +117,16 @@ namespace SchoolManagement.Areas.Student.Controllers
                // payment.User = user;
             }
             //payments.amount=fee.
-
-
             //var identity = new ClaimsIdentity(new[] {
             //new Claim("fee", Fee.FeeCharge.ToString()) 
             //}, CookieAuthenticationDefaults.AuthenticationScheme);
-
             //var principal = new ClaimsPrincipal(identity);
             //var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-
             //Hardcoded values
             /*string name = "Vaibhav";
             string email = "vbhvsngh07@gmail.com";
             string month = "3";
             string fee_total = "1500";*/
-
             return View( payment);
             
         }
@@ -141,12 +135,13 @@ namespace SchoolManagement.Areas.Student.Controllers
         public IActionResult RazorpayPayment()
         {
             string claimvalue = User.FindFirst("id").Value;
-            var parameters = new DynamicParameters();
-            parameters.Add("inUserId", claimvalue);
+            //var parameters = new DynamicParameters();
+            //parameters.Add("inUserId", claimvalue);
             //var fee = _unitOfWork.SPCall.List<Fee>(SD.GetFee ,parameters);
 
             //var fee = new DynamicParameters();
-            var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, parameters);
+            var dataset = _unitOfWork.StudentModel.FeeDetailFunction(claimvalue);
+            //var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, parameters);
             Payments payment = new Payments();
             foreach (var data in dataset)
             {
@@ -273,9 +268,10 @@ namespace SchoolManagement.Areas.Student.Controllers
             if (paymentCaptured.Attributes["status"] == "captured")
             {
                 string id =User.FindFirst("id").Value;
+                var dataset = _unitOfWork.StudentModel.FeeDetailFunction(id);
                 var paymentParam = new DynamicParameters();
                 paymentParam.Add("inUserId", id);
-                var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, paymentParam);
+                //var dataset = _unitOfWork.SPCall.List<FeeDetails>(SD.FeeDetails, paymentParam);
 
                 foreach (var data in dataset)
                 {
@@ -293,7 +289,8 @@ namespace SchoolManagement.Areas.Student.Controllers
                 // Create these action method
                 // string emailbody = GetBody("feepayment", FirstName, Email, Password);
                 //EmailConfig.SendMail(Email, "Welcome", emailbody);
-                _unitOfWork.SPCall.List<FeeDetails>(SD.UpdateFeeDate, paymentParam);
+                //_unitOfWork.SPCall.List<FeeDetails>(SD.UpdateFeeDate, paymentParam);
+                _unitOfWork.StudentModel.UpdateFeeDateFunction(id);
                 return RedirectToAction("Success");
             }
             else

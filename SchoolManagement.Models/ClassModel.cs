@@ -12,7 +12,7 @@ namespace SchoolManagement.Models
         public int ClassId { get; set; }
 
         [Required]
-        [Range(1,7)]
+        [Range(1,12)]
         public int Class { get; set; }
         [Required]
         [ForeignKey("TeacherModel")]

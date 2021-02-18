@@ -38,6 +38,9 @@ namespace SchoolManagement.Models
         [MaxLength(20)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        
+        [Required]
+        public int ContactNumber { get; set; }
 
         [MaxLength(4)]
         public string Role { get; set; }

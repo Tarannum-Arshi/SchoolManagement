@@ -218,7 +218,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddClass(int Class,int FeeCharge,int UserId)
         {
-            TeacherModel teacher = _unitOfWork.TeacherModel.Get(UserId);
+            TeacherModel teacher = _unitOfWork.TeacherModel.GetFirstOrDefault(a=>a.UserId==UserId);
             var parameters = new DynamicParameters();
             parameters.Add("inTeacherId", teacher.TeacherId);
             parameters.Add("inClass", Class);
