@@ -81,7 +81,17 @@ namespace SchoolManagement.Areas.Student.Controllers
         {
             return View();
         }
+
         public IActionResult TimeTableRoutine7()
+        {
+            return View();
+        }
+        public IActionResult ResultTable()
+        {
+            var obj = _unitOfWork.SPCall.List<StudentUserDetails>(SD.GetStudentDetails, null);
+            return View(obj);
+        }
+        public IActionResult ViewResult()
         {
             return View();
         }
@@ -374,10 +384,7 @@ namespace SchoolManagement.Areas.Student.Controllers
             outputHTML += "</body>";
             outputHTML += "</html>";
             return base.Content(outputHTML, "text/html");
-
         }
-
-
         //[HttpPost]
         public IActionResult PaytmPaymentCallBack()
         {
@@ -443,20 +450,7 @@ namespace SchoolManagement.Areas.Student.Controllers
             }
         }
 
-
-
         #endregion
-
-
-
-
-
-
-
-       
-
-
-
 
         #region GetEmailBody
 
@@ -535,6 +529,16 @@ namespace SchoolManagement.Areas.Student.Controllers
 
         #endregion
 
+        #region API CALLS
+        [HttpGet]
+
+
+        public IActionResult GetResult()
+        {
+            var obj = _unitOfWork.SPCall.List<Subject>(SD.GetResult, null);
+            return Json(new { data = obj });
+        }
+        #endregion
 
     }
 }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SchoolManagement.Models.ViewModels.StudentUserDetails>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "View Result";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Index.css" />
+</head>
+<body>
+    <div class="text-sm-right">
+        <h2 class="btn-block">Welcome @User.FindFirst("names").Value  </h2>
+    </div>
+    <div class="col-2 text-right" style="float:right">
+        <img src="\Images\@User.FindFirst("image").Value" width="30px" height="40px" style="border-radius:5px; border:1px solid #4cff00">
+    </div>
+    
+    <div class="text-sm-left">
+        <h5 class="btn-block">Result Table</h5>
+    </div>
+    <table id="studfee" class="table table-striped table-bordered" style="width:100%">
+        <tr class="table-info">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Class</th>
+            <th>View Result Here</th>
+        </tr>
+        @foreach (var stud in Model)
+        {
+            <tr>
+                <td>@stud.FirstName</td>
+                <td>@stud.Email</td>
+                <td>@stud.Class</td>
+                <td><a type="submit" class="btn btn-primary form-control" asp-area="Student" asp-controller="Student" asp-action="ViewResult">View Result</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
+
+
+

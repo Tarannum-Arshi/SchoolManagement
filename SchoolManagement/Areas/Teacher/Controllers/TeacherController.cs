@@ -35,12 +35,12 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             Subject subject = new Subject();
             return View(subject);
         }
-        public IActionResult ViewResult()
-        {
-            StudentSubjectDetails studentsubjectdetails = new StudentSubjectDetails();
-            var obj = _unitOfWork.SPCall.List<StudentSubjectDetails>(SD.GetResult, null);
-            return View(obj);
-        }
+        //public IActionResult ViewResult()
+        //{
+        //    //StudentSubjectDetails studentsubjectdetails = new StudentSubjectDetails();
+        //    var obj = _unitOfWork.SPCall.List<StudentSubjectDetails>(SD.GetResult, null);
+        //    return View(obj);
+        //}
         public IActionResult EditResult()
         {
             Subject subject = new Subject();
