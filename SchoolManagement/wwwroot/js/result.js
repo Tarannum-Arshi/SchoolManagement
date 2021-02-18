@@ -27,11 +27,6 @@ function loadDataTable() {
                                 </a>
                                 
                             </div>
-                            <div>
-                            <a href="/Teacher/Teacher/ViewResult/${data}" class=" btn btn-success text-white" style="cursor:pointer">                
-                                    View Result
-                            </a>
-                            </div>
 
                             `;
                 }, "width": "40%"

@@ -67,7 +67,7 @@ namespace SchoolManagement.Areas.Teacher.Controllers
             string claimvalue = User.FindFirst("id").Value;
             int UserId = Convert.ToInt32(claimvalue);
             teachers = _unitOfWork.TeacherModel.GetFirstOrDefault(a => a.UserId == UserId);
-            _unitOfWork.TeacherModel.GetStudentDetailsFunction(teachers);
+            _unitOfWork.TeacherModel.UpdateLeave(teachers);
             //var parameters = new DynamicParameters();
             //parameters.Add("inTeacherId", teachers.TeacherId);
             //parameters.Add("inLeaveDays", teacher.LeaveDays);

@@ -10,7 +10,8 @@ namespace SchoolManagement.DataAccess.Repository.IRepository
 {
     public interface ITeacherRepository : IRepository<TeacherModel>
     {
-        public IEnumerable<StudentUserDetails> GetStudentDetailsFunction(TeacherModel teacherModel);
+        public IEnumerable<StudentUserDetails> GetStudentDetailsFunction();
+        public IEnumerable<TeacherModel> UpdateLeave(TeacherModel teacherModel);
 
         public IEnumerable<Subject> GetResultFunction();
     }

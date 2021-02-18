@@ -35,7 +35,7 @@ namespace SchoolManagement.DataAccess.Repository
             }
         }
 
-        public IEnumerable<StudentUserDetails> GetStudentDetailsFunction(TeacherModel teacherModel)
+        public IEnumerable<TeacherModel> UpdateLeave(TeacherModel teacherModel)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("inTeacherId", teacherModel.TeacherId);
@@ -44,7 +44,7 @@ namespace SchoolManagement.DataAccess.Repository
             using (SqlConnection sqlCon = new SqlConnection(ConnectionString))
             {
                 sqlCon.Open();
-                return sqlCon.Query<StudentUserDetails>(SD.GetStudentDetails, parameters, commandType: System.Data.CommandType.StoredProcedure);
+                return sqlCon.Query<TeacherModel>(SD.ApplyForLeave, parameters, commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 

@@ -61,7 +61,7 @@ namespace SchoolManagement.Areas.Admin.Controllers
         public IActionResult EditStudent( int id,StudentDetails studentuser)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("inUserId", studentuser.UserId);
+            parameters.Add("inUserId", id);
             parameters.Add("stFirstName", studentuser.FirstName);
             parameters.Add("stLastName", studentuser.LastName);
             parameters.Add("stGender", studentuser.Gender);
